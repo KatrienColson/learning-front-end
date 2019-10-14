@@ -9,8 +9,8 @@
 <body>
    
     <h1>JavaScript Variables: VAR==> Global Scope</h1>
-    javaScript variables are containers for storing data values.
-    In this example, x, y, and z, are variables:
+   <p> javaScript variables are containers for storing data values.
+    In this example, x, y, and z, are variables:</p>
 
     x stores the value 5
     y stores the value 6
@@ -49,12 +49,10 @@ JavaScript can handle many types of data, but for now, just think of numbers and
 
 Strings are written "inside" double or single quotes. Numbers are written <strong>without</strong> quotes.
 <p id="demo-2"></p>
-
 <script>
 var pi = 3.14;
 var person = "John Doe";
 var answer = 'Yes I am!';
-
 document.getElementById("demo-2").innerHTML =
 pi + "<br>" + person + "<br>" + answer;
 </script>
@@ -65,7 +63,6 @@ Creating a variable in JavaScript is called "declaring" a variable.
 
 You declare a JavaScript variable with the var keyword:
 <p id="demo-3"></p>
-
 <script>
 var carName = "Volvo";
 document.getElementById("demo-3").innerHTML = carName;
@@ -77,7 +74,6 @@ You can declare many variables in one statement.
 
 Start the statement with var and separate the variables by comma:
 <p id="demo-4"></p>
-
 <script>
 var person = "John Doe",
 carName = "Volvo",
@@ -88,21 +84,20 @@ document.getElementById("demo-4").innerHTML = carName;
 <h2>Value = undefined</h2>
 The variable carName will have the value undefined after the execution of this statement:
 <p id="demo-5"></p>
-
 <script>
 var carName;
 document.getElementById("demo-5").innerHTML = carName;
 </script>
+
 <h2>JavaScript Arithmetic</h2>
 As with algebra, you can do arithmetic with JavaScript variables, using operators like = and +: 
 <p id="demo-6"></p>
-
 <script>
 var x = 5 + 2 + 3;
 document.getElementById("demo-6").innerHTML = x;
 </script>
-<p id="demo-7"></p>
 
+<p id="demo-7"></p>
 <script>
 var x = "John" + " " + "Doe";
 document.getElementById("demo-7").innerHTML = x;
@@ -183,5 +178,154 @@ cars.push("Audi");
 <p>Incorrect</p>
 const cars = ["Saab", "Volvo", "BMW"];
 cars = ["Toyota", "Volvo", "Audi"];    // ERROR 
+
+<h1>List of arithmetic operators: </h1>
+
+<p id="demo-a"></p>
+<script>
+var x = 5;
+var y = 2;
+var z = x + y;
+document.getElementById("demo-a").innerHTML = z;
+</script>
+
+
+<p id="demo-b"></p>
+<script>
+var x = 5;
+var y = 2;
+var z = x - y;
+document.getElementById("demo-b").innerHTML = z;
+</script>
+
+<p id="demo-c"></p>
+<script>
+var x = 5;
+var y = 2;
+var z = x / y;
+document.getElementById("demo-c").innerHTML = z;
+</script>
+
+<p id="demo-d"></p>
+<script>
+var x = 5;
+var y = 2;
+var z = x * y;
+document.getElementById("demo-d").innerHTML = z;
+</script>
+
+<p id="demo-e"></p>
+<script>
+var x = 5;
+var y = 2;
+var z = x % y;
+document.getElementById("demo-e").innerHTML = z;
+</script>
+
+<p id="demo-f"></p>
+<script>
+var x = 5;
+var y = 2;
+var z = x ** y;
+document.getElementById("demo-f").innerHTML = z;
+</script>
+
+<h1>List of assignment operators: </h1>
+
+De types van de twee operanden bepalen het gedrag van de operator van de optelsom
+<p id="demo-g"></p>
+<script>
+var x = 10;
+x += 5;
+document.getElementById("demo-g").innerHTML = x;
+</script>
+
+Vermindering
+<p id="demo-h"></p>
+<script>
+var x = 10;
+x -= 5;
+document.getElementById("demo-h").innerHTML = x;
+</script>
+
+Vermeningvuldiging
+<p id="demo-i"></p>
+<script>
+var x = 10;
+x *= 5;
+document.getElementById("demo-i").innerHTML = x;
+</script>
+
+deling
+<p id="demo-j"></p>
+<script>
+var x = 10;
+x /= 5;
+document.getElementById("demo-j").innerHTML = x;
+</script>
+
+Restewaarde
+<p id="demo-k"></p>
+<script>
+var x = 10;
+x %= 5;
+document.getElementById("demo-k").innerHTML = x;
+</script>
+
+Tot de 2de macht
+<p id="demo-l"></p>
+<script>
+var x = 10;
+x **= 5;
+document.getElementById("demo-l").innerHTML = x;
+</script>
+
+De operator van links verplaatst het opgegeven aantal bits naar links en wijst het resultaat toe aan de variabele.
+<p id="demo-m"></p>
+<script>
+var x = 10;
+x <<= 5;
+document.getElementById("demo-m").innerHTML = x;
+</script>
+
+De operator van rechts verplaatst het opgegeven aantal bits naar rechts en wijst het resultaat toe aan de variabele.
+<p id="demo-n"></p>
+<script>
+var x = 10;
+x >>= 5;
+document.getElementById("demo-n").innerHTML = x;
+</script>
+
+De niet-gekende operator van de rechter shifttoewijzing verplaatst het opgegeven aantal bits naar rechts en wijst het resultaat toe aan de variabele. 
+<p id="demo-o"></p>
+<script>
+var x = 10;
+x >>>= 5;
+document.getElementById("demo-o").innerHTML = x;
+</script>
+
+
+<p id="demo-p"></p>
+<script>
+var x = 10;
+x &= 5;
+document.getElementById("demo-p").innerHTML = x;
+</script>
+
+
+<p id="demo-q"></p>
+<script>
+var x = 10;
+x ^= 5;
+document.getElementById("demo-q").innerHTML = x;
+</script>
+
+<p id="demo-r"></p>
+<script>
+var x = 10;
+x |= 5;
+document.getElementById("demo-r").innerHTML = x;
+</script>
+
 </body>
 </html>
