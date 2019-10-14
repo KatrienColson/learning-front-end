@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.variables</title>
+</head>
+<body>
+   
+    <h1>JavaScript Variables: VAR==> Global Scope</h1>
+    javaScript variables are containers for storing data values.
+    In this example, x, y, and z, are variables:
+
+    x stores the value 5
+    y stores the value 6
+    z stores the value 11
+
+<p id="demo-1"></p>
+
+<script>
+var price1 = 5;
+var price2 = 6;
+var total = price1 + price2;
+document.getElementById("demo-1").innerHTML =
+"The total is: " + total;
+</script>
+
+<h2>JavaScript Identifiers</h2>
+All JavaScript variables must be identified with unique names.
+These unique names are called identifiers.
+
+Identifiers can be short names (like x and y) or more descriptive names (age, sum, totalVolume). 
+
+<h2>The Assignment Operator</h2>
+
+In JavaScript, the equal sign (=) is an "assignment" operator, not an "equal to" operator.
+In JavaScript, however, it makes perfect sense: it assigns the value of x + 5 to x.
+
+(It calculates the value of x + 5 and puts the result into x. The value of x is incremented by 5.)
+
+<h2>JavaScript Data Types</h2>
+
+JavaScript variables can hold numbers like 100 and text values like "John Doe".
+
+In programming, text values are called text strings.
+
+JavaScript can handle many types of data, but for now, just think of numbers and strings.
+
+Strings are written "inside" double or single quotes. Numbers are written <strong>without</strong> quotes.
+<p id="demo-2"></p>
+
+<script>
+var pi = 3.14;
+var person = "John Doe";
+var answer = 'Yes I am!';
+
+document.getElementById("demo-2").innerHTML =
+pi + "<br>" + person + "<br>" + answer;
+</script>
+
+<h2>Declaring (Creating) JavaScript Variables</h2>
+
+Creating a variable in JavaScript is called "declaring" a variable.
+
+You declare a JavaScript variable with the var keyword:
+<p id="demo-3"></p>
+
+<script>
+var carName = "Volvo";
+document.getElementById("demo-3").innerHTML = carName;
+</script>
+
+<h2>One Statement, Many Variables</h2>
+
+You can declare many variables in one statement.
+
+Start the statement with var and separate the variables by comma:
+<p id="demo-4"></p>
+
+<script>
+var person = "John Doe",
+carName = "Volvo",
+price = 200;
+document.getElementById("demo-4").innerHTML = carName;
+</script>
+
+<h2>Value = undefined</h2>
+The variable carName will have the value undefined after the execution of this statement:
+<p id="demo-5"></p>
+
+<script>
+var carName;
+document.getElementById("demo-5").innerHTML = carName;
+</script>
+<h2>JavaScript Arithmetic</h2>
+As with algebra, you can do arithmetic with JavaScript variables, using operators like = and +: 
+<p id="demo-6"></p>
+
+<script>
+var x = 5 + 2 + 3;
+document.getElementById("demo-6").innerHTML = x;
+</script>
+<p id="demo-7"></p>
+
+<script>
+var x = "John" + " " + "Doe";
+document.getElementById("demo-7").innerHTML = x;
+</script>
+ <h1>JavaScript Variables: LET en CONST ==> Block Scope</h1>
+ <h2>verschil tussen LET en VAR</h2>
+Let en Const moeten tussen {}, anders werken deze NIET
+{
+    let x = 2;
+  }
+
+  opmerking: 
+ <p> Redeclaring <strong>a var variable with let, in the same scope, or in the same block,</strong> is not allowed: NIET MOGELIJK   </p>
+  var x = 2;       // Allowed
+  let x = 3;       // Not allowed
+
+{
+  var x = 4;   // Allowed
+  let x = 5   // Not allowed
+}
+ <p> Redeclaring <strong>a let variable with let, in the same scope, or in the same block,</strong> is not allowed: NIET MOGELIJK</p>
+  let x = 2;       // Allowed
+  let x = 3;       // Not allowed
+
+{
+  let x = 4;   // Allowed
+  let x = 5;   // Not allowed
+}
+<p>Redeclaring <strong>a let variable with var, in the same scope, or in the same block,</strong> is not allowed:NIET MOGELIJK</p>
+let x = 2;       // Allowed
+var x = 3;       // Not allowed
+
+{
+  let x = 4;   // Allowed
+  var x = 5;   // Not allowed
+}
+<p>Redeclaring <strong>>a variable with let, in another scope, or in another block,</strong> is allowed: WEL MOGELIJK</p>
+let x = 2;       // Allowed
+
+{
+  let x = 3;   // Allowed
+}
+
+{
+  let x = 4;   // Allowed
+} 
+<h2>JavaScript Const</h2>
+Variables defined with const behave like let variables, except they cannot be reassigned
+JavaScript const variables must be assigned a value when they are declared:
+<p>Incorrect: 
+const PI;
+PI = 3.14159265359;</p>
+<p>Correct:
+const PI = 3.14159265359;</p>
+<p>You can change the properties of a constant object:</p>
+<p>Correct</p>
+// You can create a const object:
+const car = {type:"Fiat", model:"500", color:"white"};
+
+// You can change a property:
+car.color = "red";
+
+// You can add a property:
+car.owner = "Johnson"; 
+<p>Incorredt</p>
+const car = {type:"Fiat", model:"500", color:"white"};
+car = {type:"Volvo", model:"EX60", color:"red"};    // ERROR 
+<p>You can change the elements of a constant array:</p>
+<p>Correct</p>
+// You can create a constant array:
+const cars = ["Saab", "Volvo", "BMW"];
+
+// You can change an element:
+cars[0] = "Toyota";
+
+// You can add an element:
+cars.push("Audi");
+<p>Incorrect</p>
+const cars = ["Saab", "Volvo", "BMW"];
+cars = ["Toyota", "Volvo", "Audi"];    // ERROR 
+</body>
+</html>
