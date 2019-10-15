@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conditions</title>
+    <link rel="stylesheet" href="resources/style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rock, paper, scissors, ...</title>
+    </head>
+
+    <body>
+        <main class="title">
+            <div class="box-1">
+                <h1>Rock, Paper, Scissors....</h1>
+                <h2>Lizard, Spock!</h2>
+            </div> 
+
+                <div class="amount">
+                    <h3>Amount of players</h3>
+                    <select name="players" id="players">
+                        <!--dit zijn de aantal spelers (A)-->
+                        <option value="1">1 Player</option>
+                        <option value="2">2 Players</option>
+                    </select>
+                </div>
+                
+                <div class="btn-1">  
+                    <h3>Player 1</h3> <!-- hier kies je 1 speler-->
+                    <select name="p1choice" id="p1choice"></select>
+                
+                    <h3>Player 2</h3> <!-- hier kies je de 2de speler om mee te doen-->
+                    <select name="p2choice" id="p2choice" disabled></select>
+                </div>
+                
+                <div class="btn-2">
+                <button id="play">Play</button> <!--play knop-->
+                </div>
+                <div id="result"></div>
+        </main>
+    <script>
+
+        //TE HERBRUIKEN ZONDER {}
+        // knop om spel te starten
+        let play = document.getElementById("play");
+        play.addEventListener("click", playGame);
+
+        // keuzen tussen 1 of 2 spelers
+        let players = document.getElementById("players");
+        players.addEventListener("change", changeGame);
+
+        // keuze welke speler je bent, speler 1 of speler 2
+        let p1choice = document.getElementById("p1choice");
+        let p2choice = document.getElementById("p2choice");
+
+        // keuze welk attribut je gebruikt
+        let choices = ["rock", "paper", "scissors"];
+
+
+        //STAAT TSS { } WORDT NIET ZOMAAR OVERGENOMEN, OPNIEUW AANSPREKEN
+        // hier speel je met 1 persoon (A) met de nodige attributen
+        for (choice of choices) {
+            let element = document.createElement("option");
+            element.value = choice;
+            element.innerHTML = choice;
+            p1choice.append(element);
+        }
+        // hier kies je een 2de peroon (A) met de nodige attributen
+        for (choice of choices) {
+            let element = document.createElement("option");
+            element.value = choice;
+            element.innerHTML = choice;
+            p2choice.append(element);
+        }
+
+
+        //FUNCTION
+        // play knop
+        function playGame(event){
+            let p1value = p1choice.value;
+            let p2value;
+            // als= je met 2 spelers aan t spelen zijn wordt hier de waarde gegeven
+            if (p2choice.disabled === false) {
+                p2value = p2choice.value;
+            
+            }
+            // anders=  wordt de waarde door de computer gemaakt (1 speler)
+            else {
+                p2value = choices[Math.floor(Math.random()*choices.length)];
+                console.log(p2value);
+            //begin spel tegen computer//   
+                if (p1value ==="rock"){
+
+                    if (p2value === "rock"){
+                        document.getElementById ("result") .innerHTML = "Draw";
+                    } else if (p2value ==="scissors") {
+                        document.getElementById ("result") .innerHTML = "Player 1 wins";
+                    } else if (p2value ==="paper") {
+                        document.getElementById ("result") .innerHTML = "Player 1 lose";
+                    }
+                }
+            
+                if (p1value === "paper"){
+
+                    if (p2value === "paper"){
+                        document.getElementById ("result") .innerHTML = "Draw";
+                    } else if (p2value ==="rock") {
+                        document.getElementById ("result") .innerHTML = "Player 1 wins";
+                    } else {
+                        document.getElementById ("result") .innerHTML = "Player 1 lose";
+                    }
+                }
+            
+                if (p1value === "scissors"){
+
+                    if (p2value === "scissors"){
+                        document.getElementById ("result") .innerHTML = "Draw";
+                    } else if (p2value === "paper"){
+                        document.getElementById ("result") .innerHTML = "Player 1 wins";
+                    } else {
+                        document.getElementById ("result") .innerHTML = "Player 1 lose";
+                    }
+                }
+            }
+
+        }
+           
+
+        // dit is de keuze die je boven genomen hebt, 1 speler of 2 spelers. 
+        function changeGame(event){
+            if (players.value === "1") { // hier kies je 1 speler 
+                p2choice.disabled = true; // hier kies je 2 spelers
+            }
+            else {
+                p2choice.disabled = false; // hier heb je 1 speler gekozen en nu wordt speler 2 grijs
+            }
+        }
+    </script>
+    </body>
+    </html>
