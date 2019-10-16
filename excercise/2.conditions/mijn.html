@@ -86,6 +86,38 @@
             if (p2choice.disabled === false) {
                 p2value = p2choice.value;
             
+                if (p1value ==="rock"){
+
+                    if (p2value === "rock"){
+                        document.getElementById ("result") .innerHTML = "Draw";
+                    } else if (p2value ==="scissors") {
+                        document.getElementById ("result") .innerHTML = "Player 2 lose";
+                    } else if (p2value ==="paper") {
+                        document.getElementById ("result") .innerHTML = "Player 2 wins";
+                    }
+                }
+
+                if (p1value === "paper"){
+
+                    if (p2value === "paper"){
+                        document.getElementById ("result") .innerHTML = "Draw";
+                    } else if (p2value ==="rock") {
+                        document.getElementById ("result") .innerHTML = "Player 2 lose";
+                    } else {
+                        document.getElementById ("result") .innerHTML = "Player 2 wins";
+                    }
+                }
+
+                if (p1value === "scissors"){
+
+                    if (p2value === "scissors"){
+                        document.getElementById ("result") .innerHTML = "Draw";
+                    } else if (p2value === "paper"){
+                        document.getElementById ("result") .innerHTML = "Player 2 lose";
+                    } else {
+                        document.getElementById ("result") .innerHTML = "Player 2 wins";
+                    }
+                }
             }
             // anders=  wordt de waarde door de computer gemaakt (1 speler)
             else {

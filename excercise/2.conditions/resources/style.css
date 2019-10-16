@@ -6,23 +6,29 @@ head{
     min-height: 100%;
 }
 .title{
-    background-image: url(img/preview.jpg);
-    /* background-repeat: no-repeat; */
-    /* width: 100%;
-    height: auto; */
-}
+    background-image: url(img/background-1.jpg);
+   
+    background-repeat: no-repeat;
+    background-size: 100%;
+   }
 .box-1{
     margin-left: 40px;
     margin-right: 40px;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 .box-1 h1{
     color: white;
     text-align: center;
+    font-family: 'Liu Jian Mao Cao', cursive;
+    font-size: 4rem;
+    padding-bottom: 20px;
 }
 .box-1 h2{
     color: beige;
     text-align: center;
+    font-family: 'Liu Jian Mao Cao', cursive;
+    font-size: 2rem;
+    padding-left: 360px;
 }
 .amount{
     display: flex;
@@ -37,30 +43,34 @@ head{
 }
 #players{
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 h3{
     color: white;
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 .btn-1{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
+    padding-left: 100px;
+    outline-style:none;
+   
 }
 #p1choice{
-    color: yellowgreen; 
-    background-color: blue;
-    margin-bottom: 60px;
+    color: white; 
+    background-color: #27313d;
     padding: 10px;
     font-size: 1rem;
-
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 #p2choice{
-    color: red;
-    background-color: yellow;
+    color: white;
+    background-color:#4F6955;
     padding: 10px;
     font-size: 1rem;
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 .btn-2{
     display: flex;
@@ -69,6 +79,7 @@ h3{
     margin-top: 20px; 
     padding-top: 20px;
     padding-bottom: 45px; 
+    
 }
 #play{
     background-color: darkblue;
@@ -77,11 +88,13 @@ h3{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 3rem;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 50%;
-    padding: 40px;
+    padding: 20px;
+    outline-style:none;
+    font-family: 'Liu Jian Mao Cao', cursive;
 }
 #result{
     font-size: 3rem;

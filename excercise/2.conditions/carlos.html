@@ -6,10 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Conditions</title>
     <link rel="stylesheet" href="resources/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao|Open+Sans+Condensed:300&display=swap" rel="stylesheet"> 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rock, paper, scissors, ...</title>
+
+        <!-- <style> 
+            .block-1 div {
+              width: 100px;
+              height: 100px;
+              background-color: transparant;
+              position: relative;
+              animation-name: example;
+              animation-duration: 4s;
+              margin-left: 20px;
+              border-radius: 50%;
+              animation-iteration-count: infinite;
+            }
+            
+            @keyframes example {
+              0%   {background-color:greenyellow; left:10px; top:0px;}
+              25%  {background-color:blue; left:1175px; top:0px;}
+              50%  {background-color:blue; left:1175px; top:460px;}
+              75%  {background-color:#42f58d; left:10px; top:460px;}
+              100% {background-color:greenyellow; left:10px; top:0px;}
+            }
+        
+            </style> -->
     </head>
 
     <body>
@@ -18,7 +44,10 @@
                 <h1>Rock, Paper, Scissors....</h1>
                 <h2>Lizard, Spock!</h2>
             </div> 
-
+            <div class="block-1">
+            <div></div>
+            </div>
+           
                 <div class="amount">
                     <h3>Amount of players</h3>
                     <select name="players" id="players">
@@ -32,7 +61,7 @@
                     <h3>Player 1</h3> <!-- hier kies je 1 speler-->
                     <select name="p1choice" id="p1choice"></select>
                 
-                    <h3>Player 2</h3> <!-- hier kies je de 2de speler om mee te doen-->
+                    <h3 id="p2">Computer</h3> <!-- hier kies je de 2de speler om mee te doen-->
                     <select name="p2choice" id="p2choice" disabled></select>
                 </div>
                 
@@ -57,24 +86,30 @@
         let p2choice = document.getElementById("p2choice");
 
         // keuze welk attribut je gebruikt
-        let choices = ["rock", "paper", "scissors"];
+        let choices = ["rock", "paper", "scissors", "lizard", "spock"];
 
 
         //STAAT TSS { } WORDT NIET ZOMAAR OVERGENOMEN, OPNIEUW AANSPREKEN
         // hier speel je met 1 persoon (A) met de nodige attributen
+        let i=0;
         for (choice of choices) {
             let element = document.createElement("option");
-            element.value = choice;
+            let element2 = document.createElement("option");
+            element.value = i++;
+            element2.value=element.value;
             element.innerHTML = choice;
+            element2.innerHTML= choice;
             p1choice.append(element);
+            p2choice.append(element2);
         }
         // hier kies je een 2de peroon (A) met de nodige attributen
+        /*i=0;
         for (choice of choices) {
             let element = document.createElement("option");
-            element.value = choice;
+            element.value = i++;
             element.innerHTML = choice;
             p2choice.append(element);
-        }
+        }*/
 
 
         //FUNCTION
@@ -85,78 +120,37 @@
             // als= je met 2 spelers aan t spelen zijn wordt hier de waarde gegeven
             if (p2choice.disabled === false) {
                 p2value = p2choice.value;
-                togheter(p1value,p2value);
+                //togheter(p1value,p2value);
+                //together(p1value,p2value);
             }
             // anders=  wordt de waarde door de computer gemaakt (1 speler)
             else {
-                p2value = choices[Math.floor(Math.random()*choices.length)];
+                //p2value = choices[Math.floor(Math.random()*choices.length)];
+                p2value = Math.floor(Math.random()*choices.length);
+                p2choice.value=p2value;
                 console.log(p2value); 
-                togheter(p1value, p2value) ; 
+                //togheter(p1value, p2value) ; 
+                //together(p1value,p2value);
             }
+            together(p1value,p2value)
         }
           //begin spel tegen computer// 
-          function togheter (p1value, p2value){
-                switch (p1value){
-                    case "rock":
-                        switch (p2value){
-                            case "rock":
-                                document.getElementById ("result") .innerHTML = "1Draw"; 
-                                break;
-                                console.log ("1Draw");
-                            case "scissors":
-                                document.getElementById ("result") .innerHTML = "2Player 1 wins"; 
-                                break;
-                                console.log ("2Player 1 wins")
-                            case "paper":
-                                document.getElementById ("result") .innerHTML = "3Player 1 lose"; 
-                                break;
-                                console.log ("3Player 1 lose")
-                        }
-                        break;
+          function together(p1,p2){
+              let decisionmatrix=[0,2,1,1,2,1,0,2,2,1,2,1,0,1,2,2,1,2,0,1,1,2,1,2,0];
+              let answers=["Draw","Player One Wins","Player One looses"]; 
+              document.getElementById ("result") .innerHTML = answers[decisionmatrix[p1*5+p2*1]];
 
-                    case "paper":
-                        switch (p2value){
-                                case "paper":
-                                    document.getElementById ("result") .innerHTML = "4Draw"; 
-                                    break;
-                                    console.log ("1Draw");
-                                case "rock":
-                                    document.getElementById ("result") .innerHTML = "5Player 1 wins"; 
-                                    break;
-                                    conslole.log ("5Player 1 wins")
-                                case "scissors":
-                                    document.getElementById ("result") .innerHTML = "6Player 1 lose"; 
-                                    break;  
-                                    console.log ("6Player 1 lose") 
-                        }
-                        break;
-
-                    case "scissors":
-                        switch (p2value){
-                                case "scissors":
-                                    document.getElementById ("result") .innerHTML = "7Draw"; 
-                                    break;
-                                    console.log ("7Draw");
-                                case "paper":
-                                    document.getElementById ("result") .innerHTML = "8Player 1 wins"; 
-                                    break;
-                                    console.log ("8Player 1 wins")
-                                case "rock":
-                                    document.getElementById ("result") .innerHTML = "9Player 1 lose"; 
-                                    break; 
-                                    console.log ("9Player 1 lose")
-                        }
-                        break;
-                }
-            }     
-
+          }
+          
         // dit is de keuze die je boven genomen hebt, 1 speler of 2 spelers. 
         function changeGame(event){
             if (players.value === "1") { // hier kies je 1 speler 
                 p2choice.disabled = true; // hier kies je 2 spelers
+                document.getElementById("p2").innerHTML="Computer";
             }
             else {
                 p2choice.disabled = false; // hier heb je 1 speler gekozen en nu wordt speler 2 grijs
+                document.getElementById("p2").innerHTML="Player 2";
             }
         }
     </script>
