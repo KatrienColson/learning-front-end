@@ -81,6 +81,7 @@ h3{
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 50%;
+    padding: 40px;
 }
 #result{
     font-size: 3rem;
