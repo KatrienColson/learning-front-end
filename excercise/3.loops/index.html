@@ -43,6 +43,7 @@
 <div>
     <button id="generate">Generate</button>
     <button id="random">Randomize!</button>
+    <button id="reset">Reset</button> <!--extra knop aangemaakt-->
 </div>
 
 <div id="field">
@@ -66,21 +67,31 @@
     standard.addEventListener("click", generateField);//knop zelf
     
     let random = document.getElementById("random"); //random knop geeft alles een andere kleur
-    random.addEventListener("click", makeRandom) //werking van random
+    random.addEventListener("click", makeRandom); //werking van random
+
+    let reset = document.getElementById ("reset");//knop aangemaakt om te resetten
+    reset.addEventListener ("click",makeReset);
 
     function generateField() {
-        let square = document.createElement("div");
-        let square = "";
+       
+        
         for (i = 1; i < 100; i++) {
-        square +=   i ;
-
+            let square = document.createElement("div");         
         square.classList.add("flex-center");
 
-        field.append(square)
+        square.innerHTML=i
+        field.append(square)//voeg aan field square toe 
+        }
+
+
+
+
+
+
 
         
-}
-        document.getElementById("field").innerHTML = cell;
+
+
         
 
        
