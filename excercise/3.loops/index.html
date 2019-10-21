@@ -36,14 +36,29 @@
             background-color: black;
             color: white;
         }
+
+        .flex-container {
+            display: flex;
+            background-color:lightgray;
+            flex-wrap: wrap;
+        } 
+        .flex-container > div { 
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed grey;
+            border-width: 1px;
+        }
     </style>
 </head>
 <body>
 
 <div>
     <button id="generate">Generate</button>
+    <button id="generate2">Generate-2</button>
     <button id="random">Randomize!</button>
-    <button id="reset">Reset</button> <!--extra knop aangemaakt-->
+    <!-- <button id="reset">Reset</button> extra knop aangemaakt -->
 </div>
 
 <div id="field">
@@ -65,25 +80,51 @@
 
     let standard = document.getElementById("generate"); //knop generate, genereerd het veld
     standard.addEventListener("click", generateField);//knop zelf
+
+    let standard2 = document.getElementById("generate2"); //knop generate, genereerd het veld
+    standard2.addEventListener("click", generateField2);//knop zelf
     
     let random = document.getElementById("random"); //random knop geeft alles een andere kleur
     random.addEventListener("click", makeRandom); //werking van random
 
-    let reset = document.getElementById ("reset");//knop aangemaakt om te resetten
-    reset.addEventListener ("click",makeReset);
+    // let reset = document.getElementById ("reset");//knop aangemaakt om te resetten
+    // reset.addEventListener ("click",makeReset);
 
     function generateField() {
-       
-        
-        for (i = 1; i < 100; i++) {
-            let square = document.createElement("div");         
-        square.classList.add("flex-center");
-
-        square.innerHTML=i
-        field.append(square)//voeg aan field square toe 
+        while(field.firstChild) field.removeChild(field.firstChild);
+        let row= document.createElement("div"); //hier maken we de eerste rij
+            row.classList.add("flex-container"); //we maken rij flex-container om te doen wrappen
+        let c=1; // de 1 ste moet zwart zijn
+        for (i = 1; i < 101; i++) { //hier tellen we van 1 tot 101
+            c++; // hier tellen we 1 bij
+            let square = document.createElement("div"); //nu maken we een square
+            square.classList.add("flex-center"); //square wordt class flex-center
+            square.innerHTML=i; // hier zetten we het getal in de html
+            row.append(square); // square wordt aan rij toegevoegd
+            if(i%10==1){ //Is "i" deelbaar door 10, als het zo is dan:
+                field.append(row); //row wordt toegevoegd aan field
+                row= document.createElement("div");// nieuwe row aanmaken
+                row.classList.add("flex-container");// row wordt flexcontainer
+                c++; // we tellen 1 bij c
+                }
+            if(c%2==0){ //als c deelbaar is door 2
+                square.classList.add("bgblack"); // dan maken we hem zwart
+            }
+           
         }
+       function generateField2(){
+        for(r=1; r<=10; r++){
+            let row= document.createElement("div");
+            row.classList.add("flex-container");
+            for(c=1; c<=10; c++){
+                let square = document.createElement("div"); //nu maken we een square
+                square.classList.add("flex-center"); //square wordt class flex-center
+                square.innerHTML=(r-1)*10+c; 
+                row.append(square); // square wordt aan rij toegevoegd   
+            }
 
-
+        }
+        }
 
 
 
