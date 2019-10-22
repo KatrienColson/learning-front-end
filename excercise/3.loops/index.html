@@ -38,17 +38,17 @@
         }
 
         .flex-container {
+            width: 400px;
+            height: 400px;
             display: flex;
-            background-color:lightgray;
             flex-wrap: wrap;
         } 
         .flex-container > div { 
+            width: 40px;
+            height: 40px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            border: 1px dashed grey;
-            border-width: 1px;
         }
     </style>
 </head>
@@ -114,18 +114,20 @@
         }
     }
        function generateField2(){
+        while(field.firstChild) field.removeChild(field.firstChild);
         for(r=1; r<=10; r++){
             let row= document.createElement("div");
             row.classList.add("flex-container");
+            field.append(row);
             for(c=1; c<=10; c++){
                 let square = document.createElement("div"); //nu maken we een square
                 square.classList.add("flex-center"); //square wordt class flex-center
-                square.innerHTML=(r-1)*10+c; 
+                square.innerHTML=(r-1)*10+c;
+                if((r+c)%2==1) square.classList.add("bgblack");
                 row.append(square); // square wordt aan rij toegevoegd   
             }
-
         }
-      
+        
 
 
 
