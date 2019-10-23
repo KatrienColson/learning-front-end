@@ -23,11 +23,11 @@
             font-size: 3rem;
             color: grey;
             background-color: white;
-            padding: 20px;
+            padding: 10px;
         }
         button {
             margin: 40px;
-            padding: 20px;
+            padding: 10px;
             color: yellow;
             background-color: purple;
         }
@@ -45,7 +45,7 @@
             align-items: center;
         }
         .bgblack {
-            background-color: black;
+            background-color: darkgrey;
             color: white;
         }
         .bgred {
@@ -59,6 +59,14 @@
         .bgblue {
             background-color: purple;
             color: lightskyblue;
+        }
+        .bgyelow{
+            background-color: yellow;
+            color: green;
+        }
+        .bgpurple{
+            background-color: pink;
+            color: purple;
         }
     </style>
 </head>
@@ -74,7 +82,7 @@
 
 <script>
     let field = document.getElementById("field");
-    let color=["red", "green", "blue"];
+    let color=["red", "green", "blue", "yellow", "purple"];
 
     let standard = document.getElementById("generate");
     standard.addEventListener("click", generateField);
@@ -115,12 +123,10 @@
             let row = Math.ceil(i/10);
             square.classList.add("cell");
 
-
+            square.classList.add("bg" + color[Math.floor(Math.random()*color.length)]); 
             if(i%2==1 && row%2==1){//cel oneven & rij oneven
-                square.classList.add("bg" + color[Math.floor(Math.random()*color.length)]); 
             }
-            else if(i%2==0 && row%2==0){//cel even & rij even
-                square.classList.add("bg" + color[Math.floor(Math.random()*color.length)]); 
+            else if(i%2==0 && row%2==0){//cel even & rij even   
             }
 
             field.append(square);//alles wordt aan vierkant toegevoegd
