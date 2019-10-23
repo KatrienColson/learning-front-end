@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+<style>
+    html, body{
+        width: 100%;
+        height: auto;
+        background-image: url(resources/img/background-3.jpg); 
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+    .fixt{
+        position: fixed;
+        top:0;
+        width: 100%;
+        background-image: linear-gradient(blue, lightblue);
+        padding-bottom: 20px;
+        margin-top: 10px;
+    }
+    .title{
+        font-size: 3rem;
+        color: rgb(24, 24, 68);
+        padding: 10px;
+        font-family: arial;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .search-veld{
+        display:flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-left: 20px;
+    }
+    #pokesearch{
+        background: yellowgreen;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        margin-right: 20px;
+    }
+    #search{
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-top: 10px;
+        border-radius: 50px 20px;
+    }
+    .btn-veld{
+        display:flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start; 
+    }
+    #previous{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 10px;
+        margin-left: 20px;
+        border-radius: 50px 20px;
+    }
+    #next{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 10px;
+        border-radius: 50px 20px;
+    }
+     /*lijst*/
+     .box-overzicht{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding-top: 200px;
+     }
+    #list{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        list-style-type: none;
+         
+    }
+    .overzicht{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding-top: 10px;
+        margin-right: 100px;
+        padding-right: 50px;
+    }
+    .list-2{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        color: white;
+        font-size: 15px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-shadow: 2px 2px 4px #000000;
+         
+    }
+    .list-2:hover{
+        font-size: 150%;
+    }
+    .list-2 li{
+        word-spacing:5px;
+    }
+    .list-2 ul{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    /*legende*/
+    .name{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 35px;
+        text-shadow:5px 5px 4px orange;
+        text-transform: uppercase;
+    }
+    .card p{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 20px;
+    }
+    .moves p{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 20px;
+        
+    }
+    .abilities p{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 20px;
+    }
+    .weight p{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 20px;
+    }
+    
+</style>
+
+</head>
+
+<body>
+    <div class="fixt">
+        <div class ="title">Search Pokedex</div>
+            <div class="search-veld">    
+                <input type="text" id="pokesearch" name="pokesearch" placeholder="Pikachu">
+                <label for="pokesearch"><button id="search">Search!</button></label>
+            </div> 
+            <div class="btn-veld">
+                <button id="previous">&lt;</button>
+                <button id="next">&gt;</button>
+            </div>  
+    </div>    
+    <div class="box-overzicht">
+        <div class="overzicht">
+            <ul id="list"></ul>
+        </div>
+    </div>
+ 
+    <script>
+        /*==================================================================================================
+        ======================================== Magic Happens Here! =======================================
+        ==================================================================================================*/
+        //Variables are declared.
+        let base_url = "https://pokeapi.co/api/v2/";
+        let poke_search = document.getElementById("pokesearch");
+        let search = document.getElementById("search");
+        let previous = document.getElementById("previous");
+        let next = document.getElementById("next");
+        let list = document.getElementById("list");
+        let pokemon_name;
+        let pokemon_id;
+        let pokemon_moves;
+        let pokemon_abilities;
+        let pokemon_image;
+        let pokemon_weight;
+        //EventListeners are added to HTML elements.
+        search.addEventListener("click", function() {
+                LoadPokemon(poke_search.value);
+        });
+        poke_search.addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                LoadPokemon(poke_search.value);
+            }
+            console.log("keyup");
+        });
+        
+        previous.addEventListener("click", function() {
+            if (pokemon_id === undefined) {
+                pokemon_id = 2;
+            }
+                LoadPokemon(--pokemon_id);
+        });
+       
+        next.addEventListener("click", function() {
+            if (pokemon_id === undefined) {
+                pokemon_id = 0;
+            }
+                LoadPokemon(++pokemon_id);
+        });
+        //Function that looks up the data for a pokemon when it's given the pokemon's name or id number.
+        function LoadPokemon(pokemon){
+            let request = new XMLHttpRequest();// Create a request variable and assign a new XMLHttpRequest object to it.which is a way to open files and make an HTTP request.
+            let dots = 1;
+            request.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status == 200 && pokemon !== "") {
+                    SetVariables(JSON.parse(this.responseText));
+                }
+                else {
+                    SetVariables(dots++);
+                }   
+            }
+            request.open("GET", base_url + "pokemon/" + pokemon.toString().toLowerCase(), true);
+            request.send();
+
+    // request.LoadPokemon(pokemon) = function{  
+    //      request.sort();
+    //     .innerHTML = request;
+    //     } 
+        }
+
+        //This function changes the variables with the most recent pokemon's information.
+        function SetVariables(data){
+            if(typeof data === "number") {
+                console.log("Searching for data" + ".".repeat(data))
+            }
+            else {
+                console.log("Data found!")
+                pokemon_name = data.name;
+                pokemon_id = data.id;
+                pokemon_moves = data.moves.map(x => x.move.name);
+                pokemon_abilities = data.abilities.map(x => x.ability.name);
+                pokemon_image = data.sprites.front_default;
+                pokemon_weight = data.weight;
+                DoThingsWithTheDom();
+            }
+        }
+        //This function loads all of the pokemons and stores them in a list in your HTML.
+        //Clicking one of the list items will then look up data for that specific pokemon!
+        function LoadPokemonList() {
+            let request = new XMLHttpRequest();
+            list.innerHTML = "";
+            request.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status == 200) {//When an HTTP request is made, the response returns with HTTP status codes. 404 is the most well-known response, meaning Not Found, and 200 OK is a successful request.
+                    let pokemon_list = JSON.parse(this.responseText).results.map(x => x.name);//We're going to use JSON.parse() to parse the response, and create a data variable that contains all the JSON as an array of JavaScript objects
+                    for (pokemon of pokemon_list) {
+                        let li = document.createElement("li");
+                        li.classList.add("list-2");
+                        li.innerHTML = pokemon;
+                        li.addEventListener("click", function() {
+                            LoadPokemon(this.innerHTML);
+                        })
+                        list.append(li);
+                    }
+                }
+            }
+            request.open("GET", base_url + "pokemon?offset=0&limit=807", true);
+            request.send();
+        }
+        //Function that you can call to see the current pokemon's information
+        function LogPokeData() {
+            console.log("Name: " + pokemon_name
+            + "\n" + "ID: " + pokemon_id
+            + "\n" + "Moves:", pokemon_moves
+            , "\n" + "Abilities:", pokemon_abilities
+            , "\n" + "Image URL: " + pokemon_image
+            + "\n" + "Weight: " + pokemon_weight);
+        }
+        LoadPokemonList()
+        /*==================================================================================================
+        ======================================== Magic Ends Here! ==========================================
+        ==================================================================================================*/
+        function DoThingsWithTheDom() {
+            /*
+            Write your code here!
+            The following variables contain data for you to use. Be careful with the data types (some are numbers, some are strings and some are arrays)! 
+                pokemon_name
+                pokemon_id
+                pokemon_moves
+                pokemon_abilities
+                pokemon_image
+                pokemon_weight
+            The goal of the exercise is for you to display this information in your HTML.
+            You can do this by placing empty tags in your HTML, and the assigning their content with JS.
+            But you can also generate the HTML with document.createElement().
+            */
+         
+           
+            let result =" ";
+            
+            result += "<li class='name'>" + pokemon_name + "</li>";
+            result += "<li class='card'><p>ID:</p> " + pokemon_id + "</li>";
+            result += "<li class='moves'><p>MOVES:</p> " + pokemon_moves + "</li>";
+            result += "<li class='abilities'><p>ABILITIES:</p>" + pokemon_abilities + "</li>";
+            result += "<li class='img'> <img src='" + pokemon_image + "'></li>";
+            result += "<li class='weight'><p>WEIGHT:</p>" + pokemon_weight + "</li>";
+           
+            console.log(result);
+            list.innerHTML= result;
+        }
+       
+    </script>
+    
+</body>
+</html>
