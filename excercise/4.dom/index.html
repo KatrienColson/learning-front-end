@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
 <style>
+    *{
+        margin:0;
+    }
     html, body{
         width: 100%;
         height: auto;
@@ -19,12 +22,13 @@
         flex-direction: row;
     }
     .fixt{
+       
         position: fixed;
         top:0;
         width: 100%;
         background-image: linear-gradient(blue, lightblue);
         padding-bottom: 20px;
-        margin-top: 10px;
+        margin-top: 0;
     }
     .title{
         font-size: 3rem;
@@ -87,7 +91,7 @@
     #list{
         display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
+        flex-direction: row;
         list-style-type: none;
          
     }
@@ -95,9 +99,9 @@
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        padding-top: 10px;
-        margin-right: 100px;
-        padding-right: 50px;
+        padding-top: 20px;
+        padding-right: 20px;
+        
     }
     .list-2{
         display: flex;
@@ -108,7 +112,7 @@
         font-size: 15px;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         text-shadow: 2px 2px 4px #000000;
-         
+        margin-left: 5px;
     }
     .list-2:hover{
         font-size: 150%;
@@ -224,11 +228,6 @@
             }
             request.open("GET", base_url + "pokemon/" + pokemon.toString().toLowerCase(), true);
             request.send();
-
-    // request.LoadPokemon(pokemon) = function{  
-    //      request.sort();
-    //     .innerHTML = request;
-    //     } 
         }
 
         //This function changes the variables with the most recent pokemon's information.
@@ -254,7 +253,7 @@
             list.innerHTML = "";
             request.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status == 200) {//When an HTTP request is made, the response returns with HTTP status codes. 404 is the most well-known response, meaning Not Found, and 200 OK is a successful request.
-                    let pokemon_list = JSON.parse(this.responseText).results.map(x => x.name);//We're going to use JSON.parse() to parse the response, and create a data variable that contains all the JSON as an array of JavaScript objects
+                    let pokemon_list = JSON.parse(this.responseText).results.map(x => x.name).sort();//We're going to use JSON.parse() to parse the response, and create a data variable that contains all the JSON as an array of JavaScript objects
                     for (pokemon of pokemon_list) {
                         let li = document.createElement("li");
                         li.classList.add("list-2");
