@@ -32,12 +32,15 @@
             align-items: center;
             justify-content: space-evenly
         }
-        #calc-preview {
+        /*venster*/
+        #calc-preview { 
             width: 90%;
             height: 100px;
             background-color: aliceblue;
             color: gray;
             text-align: right;
+            padding-right: 10px;
+            padding-top: 10px;
         }
         #calc-buttons {
             width: 90%;
@@ -70,7 +73,7 @@
 
     <div id="calculator">
 
-        <div id="calc-preview">Make a calculation...</div>
+        <div id="calc-preview">Make a calculation...</div> <!--schermafbeelding cijfers-->
 
         <div id="calc-buttons">
 
@@ -111,6 +114,51 @@
             2. When you click a button, make the number/operation appear in the calc-preview div.
             3. ......
         */
+        let val=0;
+        let newnumber=true;
+        let operation='+';
+        let numbuttons= document.getElementById("calc-numbers").childNodes;
+        let operationbuttons=document.getElementById("operations").childNodes;
+        let resultwindow=document.getElementById("calc-preview");
+        for(i=0;i<numbuttons.length;i++) numbuttons[i].addEventListener("click",numpressed);
+        for(i=0;i<operationbuttons.length;i++) operationbuttons[i].addEventListener("click",operatorpressed);
+//      numbuttons.addEventListener("click",numpressed);
+
+        function numpressed(){
+                if(newnumber){
+                    resultwindow.innerHTML=this.innerHTML;
+                    newnumber=false;
+                }else resultwindow.innerHTML+=this.innerHTML;
+        }
+        function operatorpressed(){
+//              resultwindow.innerHTML=this.innerHTML;
+                if(this.innerHTML=='C'){
+                    val=0;
+                    operation='+';
+                }else
+                {
+                    switch(operation){
+                        case '+':
+                            val+=Number(resultwindow.innerHTML);
+                            break;
+                        case '-':
+                            val-=Number(resultwindow.innerHTML);
+                            break;
+                        case '*':
+                            val*=Number(resultwindow.innerHTML);
+                            break;
+                        case '/':
+                            val/=Number(resultwindow.innerHTML);
+                            break;
+                    }
+                    if(this.innerHTMLi!='=')operation=this.innerHTML;
+                }
+                resultwindow.innerHTML=val;
+                newnumber=true;
+        }
+   
+             
+
     </script>
     
 </body>
