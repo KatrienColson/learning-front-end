@@ -10,13 +10,102 @@
     </style>
 </head>
 <body>
-    <style>
-    /*input HTML*/
-    </style>
+   
+    <!--input HTML-->
 
+    <!--(B) enkele de lijst-->
+        <ul id="list">
+            <!-- <li>Name:</li>
+            <li>Age:</li>
+            <li>Gender:</li>
+            <li>Favorite Food:</li>
+            <li>Favorite Series:</li>
+            <li>Favorite Moviers:</li>
+            <li>Single:</li> -->
+        </ul>
+    <div class= "picture">
+         <img id="myImg" src="resources/img/image.jpeg" alt="Picture" width="200" height="200">
+    </div>
+
+    <!-- (A)function myFunctionButtom-->
+    <p>Click the button to remove the picture from the list.</p>
+    <button onclick="myFunctionButton()">Remove Photo</button>
+   
+    
 
    <script>
-    /*input javascript*/
+    /*(B) input javascript, enkel de lijst*/
+        let person = [
+                 "Katrien", 
+                 44, 
+                 "Female", 
+                 "Spaghetti", 
+                 "NCIS", 
+                 "Grease", 
+                 false ],
+
+             ul = document.createElement('ul');
+             document.getElementById('list').appendChild(ul);
+
+        person.forEach(function (item) {
+             let li = document.createElement('li');
+             ul.appendChild(li);
+
+             li.innerHTML += item;
+             });
+
+/*(A) verwijder de foto van de lijst, door de knop*/
+        function myFunctionButton() {
+            var list = document.getElementById("myImg").style.display='none';
+            list.removeChild(list.childNodes[0]);
+    }
+
+// Constructor function for Person objects
+    function FamilyMember(name, age, gender, food, series, movies, status) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.favoriteFood = food;
+        this.favoriteSeries = series;
+        this.favoriteMovies = movies;
+        this.maritalStatus = status;
+        }
+// Create a Person object
+var myFather = new FamilyMember("Jef", 78, "Male", "French fries", "De Kampioenen", "De Witte van Sichem", "Widower" );
+var mySon = new FamilyMember("Dieter", 19, "Male", "Mussels","Callboys", "Fast and furious", "Single" );
+var myDaughter =new FamilyMember("Stiene", 17, "Femal", "Almost everything", "Gevoel voor Tumor", "The Lion King","Single");
+// Display age
+document.getElementById("list").innerHTML =
+"My father is " + myFather.name + ", " + myFather.age + ", " + myFather.gender + ", " + myFather.favoriteFood + ", " +myFather.favoriteSeries + ", " + myFather.favoriteMovies + ", " + myFather.maritalStatus + ", "; 
+document.getElementById ("list").innerHTML =
+"My son is "+ mySon.name + ", " + mySon.age + ", " + mySon.gender + ", " + mySon.favoriteFood + ", " +mySon.favoriteSeries + ", " + mySon.favoriteMovies + ", " + mySon.maritalStatus + ", ";
+document.getElementById("list").innerHTML =
+"My daughter is "+ myDaughter.name + ", " + myDaughter.age + ", " + myDaughter.gender + ", " + myDaughter.favoriteFood + ", " +myDaughter.favoriteSeries + ", " + myDaughter.favoriteMovies + ", " + myDaughter.maritalStatus + ", ";
+
+
+
+
+
+  
+ 
+   
+    //     result += name + "Katrien";
+    //     result += age + 44;
+    //     result += gender + "female";
+    //     result += favoriteFood + "spaghetti";
+    //     result += favoriteSeries + "NCIS";
+    //     result += favoriteMovies + "Grease";
+    //     result += single + false;
+
+
+    // var i;
+    //     for (i = 0; i < person; i++) {
+    //     result += name[i] + "Katrien";
+    //     } 
+
+    
+
+
    </script> 
 </body>
 </html>

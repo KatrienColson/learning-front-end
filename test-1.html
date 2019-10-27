@@ -33,25 +33,38 @@ var musicians = 1; //om te testen, verander je de 1//
   else {
     console.log ("it 's a large group");
   }
-//cluedo//
-var room = "dining room";
-var suspect = "Mr. Parkes";
 
-var weapon = "knife";
-var solved = false;
+/*van kelvin to fahrenheit*/
+    //vaste waarde kelvin
+    const kelvin = 0;
+    //vaste waarde celsius
+    const celsius = kelvin - 273;
+    console.log(celsius);
+    //waarde fahrenheit
+    let fahrenheit = celsius * (9 / 5) + 32;
+    //afronden van het kommagetal
+    fahrenheit = Math.floor(fahrenheit);
+    console.log('The temperature is ' + fahrenheit + ' degrees Fahrenheit');
 
-if ((suspect === room) && (suspect === weapon)) {
-    console.log ("true");
-} else if ((suspect !== room) && (suspect !== weapon)) {
-    console.log ("false");
-} 
 
-if (solved === "true") {
-	console.log(suspect + "did it in the" + room +  "with the" + weapon);
-} else if (solved === "false"){
-  console.log(suspect + "did not do it");
-}
-
+    /* && EN*/
+    let mood = 'sleepy';
+    let tirednessLevel = 6;
+    if (mood === 'sleepy' && tirednessLevel > 8){
+      console.log('time to sleep');
+    }else {
+      console.log('not bed time yet');
+    }
+    
+    /* || OF*/
+    let mood = 'sleepy';
+    let tirednessLevel = 6;
+    if (mood === 'sleepy' || tirednessLevel > 8){
+      console.log('time to sleep');
+    }else {
+      console.log('not bed time yet');
+    }
+    
 
 
      
