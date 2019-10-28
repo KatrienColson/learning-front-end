@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+body {
+  border: 0;
+  outline: 0;
+  width: 100%;
+}
+
+h1 {
+  font-size: 0;
+  font-weight: normal;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 10rem;
+  color: black;
+  font-weight: bold;
+  background-color: orange;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-family: "Amatic SC", cursive;
+}
+
+.photo-background {
+  background-image: url(../img/background-4.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container-1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: auto;
+}
+
+.container-left {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 40%;
+}
+
+#photo {
+  width: 400px;
+  height: auto;
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+.container-right {
+  display: flex;
+  flex-direction: column;
+  width: 58%;
+}
+
+.container-right-1 {
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  padding-top: 10px;
+}
+.container-right-1 #button {
+  padding: 0.5rem;
+  font-family: "Amatic SC", cursive;
+  font-size: 1.5rem;
+  margin-left: 5rem;
+  width: 20%;
+}
+
+.container-right-2 {
+  height: 250px;
+}
+.container-right-2 p {
+  padding-top: 20px;
+  font-size: 3rem;
+  font-family: "Amatic SC", cursive;
+  color: orangered;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.container-right-2 #quote {
+  font-size: 1.5rem;
+  font-family: "Amatic SC", cursive;
+  padding-bottom: 20px;
+  font-weight: bold;
+  color: orange;
+}
+
+.container-right-3 {
+  height: 150px;
+}
+.container-right-3 p {
+  padding-top: 20px;
+  font-size: 3rem;
+  font-family: "Amatic SC", cursive;
+  color: orangered;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.container-right-3 #author {
+  font-size: 1.5rem;
+  font-family: "Amatic SC", cursive;
+  padding-bottom: 20px;
+  font-weight: bold;
+  color: orange;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  background-color: orange;
+  height: 30px;
+  font-family: "Amatic SC", cursive;
+  font-size: 1.5rem;
+}
+footer p {
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */

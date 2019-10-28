@@ -4,18 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="resources/css/style.css">
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">  -->
     <title>Document</title>
 </head>
 <body>
-    <!--hier de  HTML-->
 
-    
+    <!--hier de  HTML-->
+        <nav class="box">
+            That's the spirit!
+            Inspirational quotes for the creative soul.
+        </nav>
+       
+        <main class="photo-background">
+
+            <div class="container-1">
+
+
+                <div class="container-left">
+                        <img src = '' id = "photo">
+                </div> 
+
+
+                <div class="container-right">
+                    <div class="container-right-1">
+                            <button id="button">Get the quote</button>
+                    </div>
+                    <div class="container-right-2">
+                            <p>Quote</p>
+                            <div id ="quote"></div>
+                    </div>
+                    <div class="container-right-3">
+                            <p>Author</p>
+                            <div id = "author"></div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+        <footer>
+            <p>The great moral powers of the soul are faith, hope, and love.
+            </p>
+        </footer>
     <script>
     /*hier de javascript*/
 
+    //functie voor knop
+    document.getElementById ('button').addEventListener ('click', loadText);
+    //      function loadText(){
+    //      console.log("button clicked");
+ 
+        //functie om gegevens op te halen in url
+        function loadText(){
+            var xhr = new XMLHttpRequest ();
+ 
+            xhr.onreadystatechange = function(){
 
+                if(this.readyState == 4 && this.status == 200){
+                    console.log(this.responseText);
+                    var quoteitem = JSON.parse(this.responseText);
+                    
+                    document.getElementById ('quote').innerHTML = quoteitem.quote;
+                    document.getElementById ("author").innerHTML = quoteitem.author;
+                    document.getElementById ("photo").src = quoteitem.photo;
+                } else if (this.starut == 400){
+                    document.getElementById('texte') . innerHTML = 'Not Found';
+                }
+            }
 
+            xhr.open ('GET','https://thatsthespir.it/api', true);
+
+            xhr.send();
+
+            //ERROR
+            xhr.onerror = function(){
+                console.log('request ERROR');
+            }
+           
+        }
+    // }
     </script>
 
 </body>
