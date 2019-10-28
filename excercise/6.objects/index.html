@@ -42,7 +42,11 @@
                  "Spaghetti", 
                  "NCIS", 
                  "Grease", 
-                 false ],
+                 "boyfriend"];
+                let keys = Object.keys(person);
+                let values = Object.values(person);
+
+                
 
              ul = document.createElement('ul');
              document.getElementById('list').appendChild(ul);
@@ -56,7 +60,7 @@
 
 /*(A) verwijder de foto van de lijst, door de knop*/
         function myFunctionButton() {
-            var list = document.getElementById("myImg").style.display='none';
+            let list = document.getElementById("myImg").style.display='none';
             list.removeChild(list.childNodes[0]);
     }
 
@@ -71,9 +75,9 @@
         this.maritalStatus = status;
         }
 // Create a Person object
-var myFather = new FamilyMember("Jef", 78, "Male", "French fries", "De Kampioenen", "De Witte van Sichem", "Widower" );
-var mySon = new FamilyMember("Dieter", 19, "Male", "Mussels","Callboys", "Fast and furious", "Single" );
-var myDaughter =new FamilyMember("Stiene", 17, "Femal", "Almost everything", "Gevoel voor Tumor", "The Lion King","Single");
+let myFather = new FamilyMember("Jef", 78, "Male", "French fries", "De Kampioenen", "De Witte van Sichem", "Widower" );
+let mySon = new FamilyMember("Dieter", 19, "Male", "Mussels","Callboys", "Fast and furious", "Single" );
+let myDaughter =new FamilyMember("Stiene", 17, "Femal", "Almost everything", "Gevoel voor Tumor", "The Lion King","Single");
 // Display age
 document.getElementById("list").innerHTML =
 "My father is " + myFather.name + ", " + myFather.age + ", " + myFather.gender + ", " + myFather.favoriteFood + ", " +myFather.favoriteSeries + ", " + myFather.favoriteMovies + ", " + myFather.maritalStatus + ", "; 
