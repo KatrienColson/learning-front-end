@@ -58,23 +58,43 @@
         //functie om gegevens op te halen in url
         function loadText(){
             var xhr = new XMLHttpRequest ();
- 
+            var xhr2 = new XMLHttpRequest ();
+            
             xhr.onreadystatechange = function(){
 
                 if(this.readyState == 4 && this.status == 200){
                     console.log(this.responseText);
                     var quoteitem = JSON.parse(this.responseText);
-                    
-                    document.getElementById ('quote').innerHTML = quoteitem.quote;
-                    document.getElementById ("author").innerHTML = quoteitem.author;
-                    document.getElementById ("photo").src = quoteitem.photo;
-                } else if (this.starut == 400){
+                        if(quoteitem.photo == ""){
+                            var xhr2 = new XMLHttpRequest ();
+                            xhr2.onreadystatechange = function(){
+                                if(this.readyState == 4 && this.status == 200){
+                                    console.log(this.responseText);
+                                    var quoteitem2 = JSON.parse(this.responseText);
+                                    console.dir(quoteitem2);
+
+                                    document.getElementById ("photo").src = quoteitem2.photo;
+                                } else if (this.status == 400){
+                                    document.getElementById('texte') . innerHTML = 'Not Found';
+                                }
+                            xhr2.open ('GET','https://pokeapi.co/api/v2/', true);
+          
+                            xhr2.send();
+                            }
+                        }
+                        else{
+                            document.getElementById ('quote').innerHTML = quoteitem.quote;
+                            document.getElementById ("author").innerHTML = quoteitem.author;
+                            document.getElementById ("photo").src = quoteitem.photo;
+                        }
+                   
+                } else if (this.status == 400){
                     document.getElementById('texte') . innerHTML = 'Not Found';
                 }
             }
 
             xhr.open ('GET','https://thatsthespir.it/api', true);
-
+          
             xhr.send();
 
             //ERROR
