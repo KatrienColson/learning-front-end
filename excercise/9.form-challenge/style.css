@@ -6,10 +6,12 @@
 	box-sizing: border-box;
 }
 body {
-	padding-top: 100px;
-	background:#e8eaed;
+	padding-top: 20px;
     font-family: 'Josefin Sans', sans-serif;
-    height: auto;
+	height: auto;
+	background-image: url(resources/img/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 main {
 	max-width: 500px;
@@ -22,7 +24,7 @@ main {
 h1 {
 	font-size: 24px; 
 	font-weight: normal;
-	background: black; 
+	background: rgb(37, 30, 68); 
 	color: white;
 	text-align: center; 
 	padding: 20px 0; margin-bottom: 40px;
@@ -30,9 +32,9 @@ h1 {
 .flp {
 	padding: 0 50px;
 }
-.flp div {
+.flp .textbox{
 	position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
  
 .flp input, .flp label {
@@ -60,7 +62,7 @@ h1 {
 }
 .ch {
 	display: block;
-	 float: left;
+	float: left;
 	position: relative; 
 	background: white; 
 }
@@ -70,8 +72,6 @@ h1 {
 .focussed {
 	pointer-events: none;
 }
-
-
 /*foutmelding emailadres*/
 #novalid{
 	background-color: red;
@@ -86,4 +86,10 @@ h1 {
 	margin: 1em 0 0 0;
 	font-size: 0.5em;
 	display: none;
+}
+#message{
+	font-size: 8px;
+	text-align: center;
+	color: Red;
+	padding-bottom: 20px;
 }

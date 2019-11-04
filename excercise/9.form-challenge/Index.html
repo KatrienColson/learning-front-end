@@ -8,45 +8,65 @@
 </head>
     <title>Document</title>
 </head>
-<body onload="dotest()">
+<body>
     <main>
         <!--maken van textboxen-->
             <h1>9.form-challenge</h1>
-            <form class="flp">
-                <div>
-                <input type="text" id="fname"></input>
+            <form class="flp" onsubmit="return Validate();">
+                <div class="textbox">
+                <input type="text" id="fname" required></input>
                 <label for="fname">Firstname</label>
                 </div>
-                <div>
-                <input type="text" id="lname"></input>
+                <div class="textbox">
+                <input type="text" id="lname" required></input>
                 <label for="lname">Lastname</label>
                 </div>
-                <div>
-                 <input type="text" id="adres"></input>
+                <div class="textbox">
+                <input type="text" id="adres" required></input>
                 <label for="adres">Address</label>
                 </div>
-                <div>
-                <input type="text" id="city"></input>
+                <div class="textbox">
+                <input type="text" id="city" required></input>
                 <label for="city">City</label>
                 </div>
-                <div>
-                <input type="text" id="zip"></input>
+                <div class="textbox">
+                <input type="number" id="zip" required></input>
                 <label for="zip">Zip</label>
                 </div>
-                <div>
-                <input type="text" id="uname"></input>
+                <div class="textbox">
+                    <input type="number" id="phonenr"></input>
+                    <label for="phonenr">Phonenumber</label>
+                    </div>
+                    <div class="textbox">
+                    <input type="number" id="age"></input>
+                    <label for="age">Age</label>
+                    </div>
+                    <div class="textbox">
+                    <input type="text" id="hobbies"></input>
+                    <label for="hobbies">Hobbies</label>
+                    </div>
+
+                    <div class="textbox">
+                <input type="text" id="uname" required></input>
                 <label for="uname">Username</label>
                 </div>
-                <div>
-                <input type="text" id="email"></input>
+                <div class="textbox">
+                <input type="email" id="email" required></input>
                 <label for="email">Email</label>
                 </div>
-                <div>
-                <input type="text" id="psswrd" name="psswrd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>></input>
+                <div class="textbox">
+                <input type="password" id="psswrd" name="psswrd" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></input>
                 <label for="psswrd">Password</label>
                 </div>
-                <div>
-                <input type="text" id="cfpsswrd"></input>
+                    <div id="message">
+                        <h3>Password must contain the following:</h3>
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                    </div>
+                <div class="textbox">
+                <input type="password" id="cfpsswrd"></input>
                 <label for="cfpsswrd">Confirm password</label>
                 </div>
 
@@ -66,13 +86,7 @@
                 </div>
                 <!---->
                 <!--gebruik van nodige tekens voor paswoord-->
-                <div id="message">
-                        <h3>Password must contain the following:</h3>
-                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                        <p id="number" class="invalid">A <b>number</b></p>
-                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                      </div>
+               
                
             
             </form>

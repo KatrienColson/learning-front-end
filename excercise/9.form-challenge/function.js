@@ -28,57 +28,108 @@ $(".flp input").blur(function(){
 	}
 })
 
+var user = JSON.parse(localStorage.getItem('user'));
+console.log(user);
+
+  document.getElementById('btn').addEventListener('click',saveform);
+  function saveform(){
+  let person = {
+  firstname : document.getElementById('fname').value,
+  lastname : document.getElementById('lname').value,
+  adres : document.getElementById('adres').value,
+  city : document.getElementById('city').value,
+  zip : document.getElementById('zip').value,
+  uname : document.getElementById('uname').value,
+  email : document.getElementById('email').value,
+  psswrd : document.getElementById('psswrd').value,
+  cfpsswrd : document.getElementById('cfpsswrd').value,
+  phonenr : document.getElementById('phonenr').value,
+  age : document.getElementById('age').value,
+  hobbies : document.getElementById('hobbies').value,
+  }
+  localStorage.setItem('user', JSON.stringify(person));
+
+};
+// //boord kleur rood als niet is ingevuld
+// function FormValidation(){
+//   //First Name Validation 
+//   var fn=document.getElementById('fname').value;
+//   console.log('hey')
+//   if(fn == ""){
+//       alert('Please Enter First Name');
+//       document.getElementById('fname').style.borderColor = "red";
+//       return false;
+//   }else{
+//       document.getElementById('fname').style.borderColor = "green";
+//       return false;
+//   }
+//   console.log(fn);
+// } 
+
+
+
+
+
+
 //invulveld submit
-document.getElementById("email").addEventListener("submit", validation);
+// document.getElementById("email").addEventListener("submit", validation);
 
 // let form = document.getElementById('email');
 // console.log("email");
  
-function validation(){
-	event.preventDefault();
-	let email = document.forms["validate"].value;
-	let at = email.indexOf("@");
-	let point = email.lastIndexOf(".");
-	let non = document.getElementById("novalid");
-	let oui = document.getElementById("valid");
+// function validation(){
+// 	event.preventDefault();
+// 	let email = document.forms["validate"].value;
+// 	let at = email.indexOf("@");
+// 	let point = email.lastIndexOf(".");
+// 	let non = document.getElementById("novalid");
+// 	let oui = document.getElementById("valid");
 	
-		if(at < 1 || point < (at + 2) || (point + 2) >= email.length){
-		non.style.display = "block";
-		oui.style.display = "none";
-		return false;
-		} else {
-		oui.style.display = "block";
-		non.style.display = "none";
-		return false;
-        }
-        
-}
-console.log("");
+// 		if(at < 1 || point < (at + 2) || (point + 2) >= email.length){
+// 		non.style.display = "block";
+// 		oui.style.display = "none";
+// 		return false;
+// 		} else {
+// 		oui.style.display = "block";
+// 		non.style.display = "none";
+// 		return false;
+//         }    
+// }
 
 
 /*data onthouden*/
-function dotest(){
-    var input = document.getElementById('fname');
-    if( localStorage.test ){
-        input.value = localStorage.test;
-    }
+// function dotest(){
+//     var input = document.getElementById('flp');
+//     if( localStorage.test ){
+//         input.value = localStorage.test;
+//     }
 
-    input.addEventListener('blur', function(){
-        localStorage.test = input.value;
-    }, false);
+//     input.addEventListener('blur', function(){
+//         localStorage.test = input.value;
+//     }, false);
     
-}
+// }
 /* submit knop met confirm*/
+
+
 function Validate() {
-    var password = document.getElementById("psswrd").value;
-    var confirmPassword = document.getElementById("cfpsswrd").value;
-    if (password != confirmPassword) {
-        alert("Passwords do not match.");
-        return false;
+  saveform();
+  var password = document.getElementById("psswrd").value;
+  var confirmPassword = document.getElementById("cfpsswrd").value;
+  var email = document.getElementById("email").value;
+  var e = email.search("@gmail.com");
+  if (password != confirmPassword) {
+      alert("Passwords do not match.");
+      return false;
     }
-    return true;
+    else if(e == -1){
+      alert("no gmail detected");
+      return false;
+    }
+    else {
+    alert("ok");
+  }
 }
-    console.log(psswrd);
 
 //gebruik van nodige tekens voor paswoord
 var myInput = document.getElementById("psswrd");
