@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="./resources/css/stylesheet.css">
 
 </head>
 <body class="bg-dark pt-4">
@@ -42,14 +42,31 @@
             </p>
             <hr>
             <br>
-            <label for="greetingsBox">Type your message here: <input type="text" id="greetingsBox" class="form-control"/></label>
-
+        
+            <label for="greetingsBox">Type your message here: <input type="text"  id="greetingsBox" class="form-control"/></label>
+            
             <div class="col-6 mx-auto p-2 greetingsBoxHolder">
                 <h3><!-- Your message comes here--></h3>
             </div>
+        
         </div>
         <script>
-            // Write your code here
+            let input = document.getElementById("greetingsBox");
+            let output = document.querySelector(".greetingsBoxHolder h3");
+
+            input.addEventListener("keyup", myFunction);
+
+            function myFunction (){
+                let x = input.value;  
+           
+                if (x == ""){
+                    output.innerHTML=("sorry nothing to show");
+                } else {
+                    output.innerHTML = x
+                }
+            }
+           
+           
         </script>
     </div>
     <!-- END OF Part 1 -->
@@ -91,6 +108,42 @@
         </div>
         <script>
             // Write your code here
+             let nm = document.getElementById("name");
+             let pzz = document.getElementById("pizza");
+             let sz = document.getElementById("size");
+             let rmrks = document.getElementById("remarks");
+            
+            let fieldArray = document.querySelectorAll("#emptyRow > td > input");
+            let inputArray = Array.from(fieldArray);
+
+            for (let i = 0; i < 4; i++){
+                inputArray[i].addEventListener("keyup", myFunction);
+            }
+         
+            
+
+            function myFunction() {
+                if(event.keyCode === 13 ) {
+                    if ((nm.value == "") || (pzz.value =="") || (sz.value == "")){
+                            alert("Sorry, this box is still empty");
+                    } 
+                    else {
+                            let table = document.getElementById("pizzaOrders");
+                            let row = table.insertRow(2);
+                            console.log(inputArray);
+                            let nm = row.insertCell(0);
+                            let pzz = row.insertCell(1);
+                            let sz = row.insertCell(2);
+                            let rmrks = row.insertCell(3);
+                            nm.innerHTML = inputArray[0].value;
+                            pzz.innerHTML = inputArray[1].value;
+                            sz.innerHTML = inputArray[2].value;
+                            // rmrks.innerHTML = inputArray[3].value;
+                        
+                    }
+                } 
+            }
+            
         </script>
     </div>
     <!-- END OF Part 2 -->
@@ -347,7 +400,7 @@
         <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
             <h3>Part 7: Sliders</h3>
             <p>Recreate this very intuitive user interface. Insert the DOM nodes (html elements) using document.createElement();</p>
-            <img src="./input.gif" alt="Interface" />
+            <!-- <img src="./input.gif" alt="Interface" /> -->
             <hr/>
             <br/>
 
