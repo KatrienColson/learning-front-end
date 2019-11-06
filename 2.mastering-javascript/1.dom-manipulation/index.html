@@ -119,8 +119,6 @@
             for (let i = 0; i < 4; i++){
                 inputArray[i].addEventListener("keyup", myFunction);
             }
-         
-            
 
             function myFunction() {
                 if(event.keyCode === 13 ) {
@@ -173,6 +171,29 @@
         </div>
         <script>
             // Write your code here
+            let ingredient = ["Pasta","Tomato Sauce","Cheese","Choose your final ingredient"];
+            let text = "";
+            let i;
+            for (i = 0; i < ingredient.length; i++) {
+            text += ingredient[i] + "<br>";
+            }
+                let button1 = document.getElementById("launchMe");
+                button1.onclick = onbutton1clicked;
+                function onbutton1clicked() { 
+                document.getElementById("listHolder").innerHTML = text;
+                }
+
+            // let lijst = document.querySelectorAll("#listHolder > span");
+            // let inputArray = Array.from(lijst);
+            //     for (let i = 0; i < 3; i++){
+            //         inputArray[i].addEventListener("keyup", myFunction);
+            //     }
+            //     document.getElementById("launchMe").addEventListener("click", myFunction);
+
+            //     function myFunction() {
+            //     alert (lijst);
+            //     }
+            
         </script>
     </div>
     <!-- END OF Part 3 -->
@@ -374,7 +395,43 @@
             <div id="moveAnimation" class="block"></div>
         </div>
         <script>
+
             // Write your code here
+            myMove();
+            function myMove() {
+                let elem = document.getElementById("moveAnimation");   
+                let pos = 0;
+                let id = setInterval(frame, 1000/60);
+                let frames = 9; //snelheid van het blokje
+                function frame() {
+                    pos = pos + frames
+                    if (pos >1092) { //breedte van het scherm
+                    clearInterval(id);
+                    } else {
+                    pos = pos + 1; 
+                    elem.style.left = pos + "px"; 
+                    }
+                }
+            }
+            // myMove();
+            // function myMove() {
+            //     let elem = document.getElementById("moveAnimation");   
+            //     let pos = 1092;
+            //     let id = setInterval(frame, 1000/10);
+            //     let frames = 6;
+            //     function frame() {
+            //         pos = pos + frames
+            //         if (pos <1092) {
+
+            //         clearInterval(id);
+            //         } else {
+            //         pos = pos - 1; 
+                   
+            //         elem.style.left = pos - "px"; 
+            //         }
+            //     }
+            // }
+
         </script>
     </div>
     <!-- END OF Part 5 -->
@@ -391,6 +448,20 @@
         </div>
         <script>
             // Write your code here
+
+            window.onload = function(){
+                var bsDiv = document.getElementById("followMouse");
+                var x;
+            // On mousemove use event.clientX and event.clientY to set the location of the div to the location of the cursor:
+                window.addEventListener('mousemove', function(event){
+                    x = event.clientX;              
+                    if ( typeof x !== 'undefined'){
+                        bsDiv.style.left = x + "px"; 
+                    }
+                }, false);
+            }
+
+           
         </script>
     </div>
     <!-- END OF Part 6 -->
@@ -405,9 +476,19 @@
             <br/>
 
             <div id="target"></div>
+            <p>Enter your first name</p>
+            <input type="text" name="FirstName" value=" ">
+            <br>
+            <input type="range" name="points" min="65" max="90">
+            <br>
+            <input type="submit">
         </div>
         <script>
             // Write your code here
+            document.getElementById(input);
+           
+
+           
         </script>
     </div>
     <!-- END OF Part 7 -->
