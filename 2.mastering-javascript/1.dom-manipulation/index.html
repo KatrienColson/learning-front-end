@@ -479,13 +479,18 @@
             <p>Enter your first name</p>
             <input type="text" name="FirstName" value=" ">
             <br>
-            <input type="range" name="points" min="65" max="90">
+            <input type="range" id="points" min="65" max="90">
             <br>
-            <input type="submit">
+            <button onclick="myFunction()">Add letters</button>
         </div>
         <script>
             // Write your code here
-            document.getElementById(input);
+
+            function myFunction() {
+            var x = document.getElementById("points").value;
+            document.getElementById("target").innerHTML = x;
+}
+            // var target =  document.createElement("target");
            
 
            
