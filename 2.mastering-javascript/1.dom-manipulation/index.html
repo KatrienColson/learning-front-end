@@ -386,7 +386,7 @@
 
     <!-- Part 5: Make it move -->
     <div class="row">
-        <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4" id="part5div">
             <h3>Part 5: Make it move</h3>
             <p>Below this, you have a div that needs to move left to right using JS for the motion. Make it reach the end in 2 seconds, then return in 5s. Repeat that forever.</p>
             <hr>
@@ -405,10 +405,16 @@
                 let frames = 9; //snelheid van het blokje
                 function frame() {
                     pos = pos + frames
-                    if (pos >1092) { //breedte van het scherm
-                    clearInterval(id);
+                    if (pos<0)
+                    {
+                        pos=0;
+                        frames=9;
+                    }
+                    if (pos >document.getElementById("part5div").offsetWidth) { //breedte van het scherm
+                    //clearInterval(id);
+                    frames=-2;
                     } else {
-                    pos = pos + 1; 
+                   // pos = pos + 1; 
                     elem.style.left = pos + "px"; 
                     }
                 }
@@ -450,17 +456,18 @@
             // Write your code here
 
             window.onload = function(){
-                var bsDiv = document.getElementById("followMouse");
-                var x;
+                var mousy = document.getElementById("followMouse");
+            
             // On mousemove use event.clientX and event.clientY to set the location of the div to the location of the cursor:
                 window.addEventListener('mousemove', function(event){
-                    x = event.clientX;              
-                    if ( typeof x !== 'undefined'){
-                        bsDiv.style.left = x + "px"; 
-                    }
-                }, false);
-            }
+                    x = event.clientX;    
+                    if (x > 1092) {
 
+                    }  else {
+                        mousy.style.left = x + "px";
+                    }       
+                });
+            }
            
         </script>
     </div>
@@ -476,19 +483,33 @@
             <br/>
 
             <div id="target"></div>
-            <p>Enter your first name</p>
+            <!-- <p>Enter your first name</p>
             <input type="text" name="FirstName" value=" ">
             <br>
             <input type="range" id="points" min="65" max="90">
             <br>
-            <button onclick="myFunction()">Add letters</button>
+            <button onclick="myFunction()">Add letters</button> -->
         </div>
         <script>
             // Write your code here
+            //document.getElementById("target").innerHTML='<p>Enter your first name</p><input type="text" name="FirstName" value=" "> <br><input type="range" id="points" min="65" max="90"> <br> <button onclick="myFunction()">Add letters</button>';
+            let target=document.getElementById("target");
+            target.appendChild(document.createElement("p").appendChild(document.createTextNode("Enter your first name")));
+            let t2=document.createElement("type");
+            t2.setAttribute("name","Firstname");
+            t2.setAttribute("value"," ");
+            target.appendChild(t2);
 
-            function myFunction() {
-            var x = document.getElementById("points").value;
-            document.getElementById("target").innerHTML = x;
+            //document.getElementById("target").appendChild(p2);
+             function generateName() {
+                let base = document.getElementsByClassName("col-12 bg-white shadow-sm p-4 mx-auto mt-4");
+                    console.dir(base);
+
+                let baseArray = Array.from(base);
+                    console.dir(baseArray);
+                let target = baseArray[baseArray.lenght-1].lastChild.previousSibling;
+                    console.dir(baseArray.childNodes);
+                    
 }
             // var target =  document.createElement("target");
            
