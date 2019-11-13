@@ -5,14 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="resources/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
     <title>Document</title>
+    
 </head>
-<body>
-        <div id="score">0</div>
-        <button onclick="main()">PLAY</button>
-    <canvas id="gameCanvas" width="300" height="300">
-    </canvas>
 
+<body>
+
+    <div class = container>
+            SNAKE GAME
+        <div class = container-inhoud>
+            <div class = scorebord>
+                <p>Scorenbord</p>
+                <div id="score">0</div>
+            
+                <div class = knop>
+                    <button onclick="main()">PLAY</button>
+                </div>
+            </div>
+                <canvas id="gameCanvas" width="300" height="300">
+                </canvas>
+        </div>
+    </div>
 <script>
     let canvas = document.getElementById("gameCanvas");
     canvas.style.border = "black 2px solid";

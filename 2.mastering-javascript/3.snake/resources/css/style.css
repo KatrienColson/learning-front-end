@@ -1,0 +1,56 @@
+body{
+    background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
+}
+.container{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+width: 100%;
+
+padding-top: 20px;
+justify-content: center;
+padding-bottom: 10px;
+font-family: 'Permanent Marker', cursive;
+font-size: 30px;
+}
+.container-inhoud{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+width: 100%;
+padding-top: 20px;
+}
+p{
+font-family: 'Permanent Marker', cursive;
+font-size: 24px;
+}
+.scorebord{
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+height: auto;
+padding-left: 10px;
+margin-right: 20px;
+
+}   
+#score{
+font-family: 'Permanent Marker', cursive;
+font-size: 24px;
+text-align: center;
+}
+.knop{
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+justify-content: center;
+padding-top: 20px;
+margin-right: 20px;
+}
+button{
+background-color: black;
+color: white;
+padding: 10px;
+font-family: 'Permanent Marker', cursive;
+letter-spacing: 3px;
+}
