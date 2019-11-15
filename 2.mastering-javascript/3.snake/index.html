@@ -13,18 +13,37 @@
 <body>
 
     <div class = container>
+            
             SNAKE GAME
         <div class = container-inhoud>
             <div class = scorebord>
                 <p>Scorenbord</p>
-                <div id="score">0</div>
-            
-                <div class = knop>
-                    <button onclick="main()">PLAY</button>
+                    <input type="text" id="username" placeholder="Enter user name" ></input>
+                <div class ="dropdown">
+                     <input type="color" id="snakefillcolor" name="snakefillcolor"
+                     value=#90ee90>
+                    <label for="snakefillcolor">Snake inside color</label>
+    
+                    <input type="color" id="snakestrokecolor" name="snakestrokecolor"
+                    value=#013220>
+                    <label for="snakestrokecolor">Snake line color</label> 
                 </div>
+                <div class = knop>
+                    <button onclick="start()">PLAY</button>
+                </div>
+
+                <div id="score">0</div>
+                    <label for="score">Score:</label>
+                <div id="hscore">0</div>
+                <div id="hscorer"></div>
+                    <label for="hscore">Hall Of Fame</label>
+               
+                
+               
             </div>
                 <canvas id="gameCanvas" width="300" height="300">
                 </canvas>
+                <div id="status"></div>
         </div>
     </div>
 <script>
@@ -33,20 +52,29 @@
     let context = canvas.getContext("2d");
     let dx = 0;
     let dy = 10;
-    let snake = [  {x: 150, y: 150},  
-                {x: 140, y: 150},  
-                {x: 130, y: 150},  
-                {x: 120, y: 150},  
-                {x: 110, y: 150},
-                ];
-    
+    let width = 300;
+    let height = 300;
+    let snake;
+    let oneLonger = false;
+    let gameOver;
+    let timeout;
+    let score;
+    let hscore = 0;
+    //let hallOfFame = [["winner1",0],["winner2",0],["winner3",0],["winner4",0]];
+    let hallOfFame=[];
+    let hScoreIndex;
 
        //in het veld de blokjes zetten en aanspreken met "context" niet met snake
-        function drawSnakePart(snakePart) {  
-            context.fillStyle = 'lightgreen';  
-            context.strokestyle = 'darkgreen';
+        function drawSnakePart(snakePart,opacity) {  
+            const a=context.globalAlpha;
+            context.fillStyle = document.getElementById('snakefillcolor').value;  
+            context.strokeStyle = document.getElementById('snakestrokecolor').value;
+            //context.globalAlpha=0.2;
+            context.globalAlpha=opacity;
+            //strokeStyle.opacity=opacity;
             context.fillRect(snakePart.x, snakePart.y, 10, 10);  
             context.strokeRect(snakePart.x, snakePart.y, 10, 10);
+            context.globalAlpha=a;
         }
         //canvas leeg maken
         function clearCanvas() {  
@@ -66,9 +94,15 @@
         }
         //snake in veld tekenen
         function drawSnake() {  
-            snake.forEach(drawSnakePart);
+            l=snake.length;
+            for(i=0;i<l;i++)
+            {   
+                opacity=0.8*((l-i)/l)+0.2;
+                drawSnakePart(snake[i],opacity)
+            }
+            //snake.forEach(drawSnakePart.bind(this,1));
         }
-        drawSnake() 
+//        drawSnake() 
 
         function changeDirection(event) {  
             const LEFT_KEY = 37;  
@@ -100,17 +134,45 @@
                 dy = 10;  
                 console.log('yey')
             }
+            if (keyPressed ===27) {
+               // snake.unshift(head); 
+                console.log('langer');
+                oneLonger=true;
+            }
+            
         }
-        createFood(); 
-        
+        //createFood(); 
+        function start()
+        {
+            document.getElementById("status").innerHTML="";
+            gameOver=false;
+            snake = [  {x: 150, y: 150},  
+                {x: 140, y: 150},  
+                {x: 130, y: 150},  
+                {x: 120, y: 150},  
+                {x: 110, y: 150},
+                ];
+            score = 0;
+            timeout=100;
+            document.getElementById('score').innerHTML = score;
+            hScoreIndex=-1;
+            createFood();
+            drawSnake();
+            main();
+        }
         function main() {  
-            setTimeout(function onTick() {    
-                clearCanvas();    
-                drawFood();    
-                advanceSnake();    
-                drawSnake();
-                main();  
-            }, 100)
+            if(gameOver)
+            {
+                document.getElementById("status").innerHTML="Game Over";
+            }
+            else
+                setTimeout(function onTick() {    
+                    clearCanvas();    
+                    drawFood();    
+                    advanceSnake();    
+                    drawSnake();
+                    main();  
+                }, timeout)
         }
         // voedsel plaatsen waar de slang niet is
         function randomTen(min, max) {  
@@ -133,19 +195,79 @@
              context.strokeRect(foodX, foodY, 10, 10);
          }
         function advanceSnake() {  
+            
             const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+            if (head.x>width) head.x=0;
+            if (head.x<0) head.x=width;
+            if (head.y>height) head.y=0;
+            if (head.y<0) head.y=height;
+            let didTouchSnake=false;
+            for(i=1;i<snake.length;i++) 
+                if((snake[0].x === snake[i].x) && (snake[0].y === snake[i].y)) didTouchSnake=true;
             snake.unshift(head);
+            
+            
             const didEatFood = snake[0].x === foodX && snake[0].y === foodY;  
-            if (didEatFood) {    
-            createFood();  
-            score +=10;
-            document.getElementById('score').innerHTML = score;
-            } else 
+            gameOver=didTouchSnake;
+            if (didEatFood || oneLonger) {    
+                oneLonger=false;
+                if(didEatFood){
+                    createFood();  
+                    score +=10;
+                    keepScoreBoard();
+                    if(score>hscore){
+                        hscore=score;
+                        //document.getElementById("hscorer").innerHTML = document.getElementById("username").value;
+                    }
+                    timeout=timeout*.9;
+                    document.getElementById('score').innerHTML = score;
+                    }
+                } else 
                 {    
                  snake.pop();  
                 }
         }
-        
+        function keepScoreBoard()
+        {
+            if(score>0)
+            {
+                if(hallOfFame.length<1) 
+                {
+                    name=document.getElementById("username").value;
+                    hallOfFame.push({"name": name,"score":score});
+                    hScoreIndex=0;
+
+                }
+                if(hScoreIndex>=0)
+                {
+                    if(hallOfFame[hScoreIndex].score<score) hallOfFame[hScoreIndex].score=score;
+                    if(hScoreIndex!=0)
+                    {
+                        if(hallOfFame[hScoreIndex].score>hallOfFame[hScoreIndex-1].score)
+                        {
+                            let a=hallOfFame[hScoreIndex];
+                            hallOfFame[hScoreIndex]=hallOfFame[hScoreIndex-1];
+                            hallOfFame[hScoreIndex-1]=a;
+                        }
+                    }
+                }
+                
+                for(i=hallOfFame.length-1;i>=0;i--)
+                {
+                    
+                }
+
+                publishScoreBoard()
+            }
+        }
+        function publishScoreBoard()
+        {
+            
+            document.getElementById('hscore').innerHTML = "";
+            for(i=0;i<hallOfFame.length;i++) 
+                document.getElementById('hscore').innerHTML += hallOfFame[i]["name"]+" "+hallOfFame[i]["score"]+"</BR>";
+
+        }
         function didGameEnd() {  
             for (let i = 4; i < snake.length; i++) {    
                 const didCollide = snake[i].x === snake[0].x &&      snake[i].y
@@ -163,8 +285,7 @@
         document.addEventListener("keydown", changeDirection);
         
         //scorebord
-        let score = 0;
-
+        
          //main();
         
        
