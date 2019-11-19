@@ -1,0 +1,32 @@
+body{
+    margin: 0;
+    padding: O;
+}
+input{
+    background-color: yellow;
+    padding: 10px;
+    margin: 20px;
+}
+button{
+    background: blue;
+    color: darkblue;
+    border: none;
+    padding: 20px;
+    margin: 20px;
+}
+.fa {
+    margin-left: -12px;
+    margin-right: 8px;
+}
+table, td, th {
+    border: 1px solid black;
+    margin-left: 20px;
+} 
+table {
+    border-collapse: collapse;
+    width: 50%;
+} 
+td {
+    height: 50px;
+    vertical-align: bottom;
+}
