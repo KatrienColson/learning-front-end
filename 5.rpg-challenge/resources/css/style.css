@@ -1,0 +1,180 @@
+/*algemeen*/
+*{
+    margin: 0;
+    padding: 0;
+    border:0;
+    outline:0;
+}
+body{
+    background-image: url("../img/background-7.jpg");
+    background-repeat: no-repeat;
+    background-position: cover;
+    height: auto;
+    width: 100%;
+}
+/*grote container*/
+.container-1{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    padding-bottom: 10px;
+    font-family: 'Walter Turncoat', cursive;
+}
+/*titel en startknop*/
+.title{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    color: orange;
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Frijole', cursive;
+}
+.button-start{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin-top: 10px;
+    color: #f65e1c;
+    background-color: white;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button-start:hover{
+    background-color:  #f65e1c;
+    color: white;
+}
+/*console player 1 en 2 */
+.veld-1, .veld-2{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: 1px solid white;
+    background-color: black;
+    width: 30%;
+}
+/*titel playveld*/
+p{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    color: white;
+    font-size: 20px;
+}
+/*speler 1*/
+.drop-1, .box-3{
+    padding: 20px;
+}
+/*speler 2*/
+.drop-2, .box-4{
+    padding: 20px;
+}
+/*tekstveld voor de move's*/
+.veld-3{
+    border: 3px groove orange;
+    padding: 10px;
+    margin: 10px;
+    width: 90px;
+    height: 100px;
+    text-align: center;
+    color: white;
+}
+.namePlayer1, .namePlayer2{
+    color: #FFC300;
+    font-size: 18px;
+}
+::placeholder {
+    color: #ff9c33;
+}
+/*inputveld*/
+input[type=text]{
+    display: flex;
+    width: 50%;
+    padding: 7px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+/*dropdown velden*/
+.chooseItems1, .chooseItems2, .chooseRaces1, .chooseRaces2{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    color: #FFC300;
+    margin-bottom: 10px;  
+}
+.chooseItems1> select, .chooseItems2> select, .chooseRaces1> select, .chooseRaces2> select {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f65e1c;
+    padding: 7px 10px;
+    color: white;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 50%;
+}
+/*vierkant speelveld*/
+.box-bg-1 {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+} 
+/*vierkant speelveld speler 1*/
+.box-1{
+    border: 2px dotted orange;
+    width: 50%;
+    height: 300px;
+    background-color: white;
+} 
+/*vierkant speelveld speler 2*/
+.box-2{
+    border: 2px dotted white;
+    width: 50%;
+    height: 300px;
+    background-color: #f65e1c;
+} 
+/*knoppen*/
+.box-bg-2{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+/*class knoppen speler 1 en 2*/
+.box-3, .box-4{
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+} 
+/*knoppen speler 1 en 2*/
+.play-1-hit, .play-1-heal, .play-1-yield, .play-2-hit, .play-2-heal, .play-2-yield{
+    display: flex;
+    padding: 15px;
+    background-color: white;
+    color: #f65e1c;
+    border-radius: 12px;
+    border: 2px solid #f65e1c;
+    margin: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+}
+.play-1-hit:hover, .play-1-heal:hover, .play-1-yield:hover, .play-2-hit:hover, .play-2-heal:hover, .play-2-yield:hover {
+    background-color:  #f65e1c;
+    color: white;
+}
+
+
+
+

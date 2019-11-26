@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Walter+Turncoat&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Frijole&display=swap" rel="stylesheet"> 
+    <title>rpg-challenge</title>
+</head>
+<body>
+    <div class="container-1">
+        <!--titel en startknop-->
+        <div class="title"> MENS erger je NIET ???
+            <button class="button-start" id="start">START GAME!</button> 
+        </div>
+        
+        <div class="veld-1">
+<!--PLAYER 1 inputfield en dropbox speler 1-->
+            <div class="drop-1">
+                   <label class="namePlayer1">Name player 1:</label> 
+                        <input type="text" name="fname1" id="name1" placeholder="Name player 1">
+                <div class = chooseItems1>
+                    <label>Choose Items</label>
+                    <select id="itemsPlayer1"> 
+                        <option value="boots">Boots</option>
+                        <option value="staff">Staff</option>
+                        <option value="sword">Sword</option>
+                        <option value="bow">Bow</option>
+                    </select>
+                </div>
+                <div class ="chooseRaces1">
+                    <label>Choose Races</label>
+                    <select id="racePlayer1"> 
+                        <option value="human">Humans</option>
+                        <option value="orc">Orcs</option>
+                        <option value="elves">Elves</option>
+                        <option value="vampire">Vampires</option>
+                    </select>
+                </div>
+                 <!--health score speler 1-->
+                <div id="health1">100</div> 
+                <p>Player 1</p>
+                    <div class="greetingsBoxHolder1"></div> 
+                    <h3><!-- Your message comes here--></h3> 
+            </div>
+
+            <!--vierkant speelveld-->
+            <div class="box-bg-1">
+                    <!--vierkant speelveld speler 1-->
+                    <div class="box-1"id='boxField1'>
+                        
+                        <!--keuze van race speler 1-->
+                        <div id="rasChoice1"></div>
+                        <div id="itemChoice1"></div>
+                    </div>
+            </div> 
+            <div class="box-bg-2">
+                    <!--knoppen speler 1-->
+                    <div class="box-3">
+                        <button class="play-1-hit" id="hit1">Hit</button>
+                        <button class="play-1-heal" id="heal1">Heal</button>
+                        <button class="play-1-yield" id="yield1">Yield</button>
+                    </div>
+            </div> 
+        </div> <!--einde veld 1--> 
+
+
+        <div class="veld-3">
+                <!--tekstveld voor de move's-->
+                     <div class="logfield" id="log">Log:</div>
+                </div>     
+
+
+        <div class="veld-2">            
+<!--PLAYER 2 inputfield en dropbox speler 2-->
+            <div class="drop-2">
+                    <label class="namePlayer2">Name player 2:</label> 
+                        <input type="text" name="fname2" id="name2" placeholder="Name player 2">
+                <div class = chooseItems2>        
+                    <label>Choose Items</label>
+                    <select id="itemsPlayer2">
+                        <option value="boots">Boots</option>
+                        <option value="staff">Staff</option>
+                        <option value="sword">Sword</option>
+                        <option value="bow">Bow</option>
+                    </select>
+                </div>
+                <div class = "chooseRaces2">
+                    <label>Choose Races</label>
+                    <select id="racePlayer2">
+                        <option value="human">Humans</option>
+                        <option value="orc">Orcs</option>
+                        <option value="elf">Elves</option>
+                        <option value="vampire">Vampires</option>
+                    </select>
+                </div>
+                <!--health score speler 2-->
+                <div id="health2">130</div> 
+                <p>Player 2</p>    
+            </div>
+        
+            <!--vierkant speelveld-->
+            <div class="box-bg-1">
+                <!--vierkant speelveld speler 2-->
+                <div class="box-2" id="boxField2">
+                    
+                    <!--keuze van race speler 2-->
+                    <div id="rasChoice2"></div>
+                    <div id="itemChoice2"></div>
+                </div> 
+            </div> 
+            <div class="box-bg-2">
+                <!--knoppen speler 2-->
+                <div class="box-4">
+                    <button class="play-2-hit" id="hit2">Hit</button>
+                    <button class="play-2-heal" id="heal2">Heal</button>
+                    <button class="play-2-yield" id="yield2">Yield</button>
+                </div>
+            </div> 
+        </div><!--einde veld 2-->
+       
+    </div><!--einde container 1-->
+
+<!--BEGIN JAVASCRIPT-->
+   <script>
+        //startbutton
+        let btnStart = document.getElementById("start");
+        
+    //player 1
+        let fname1 = document.getElementById("name1");
+        //dropdown player 1
+        let selectItem1 = document.getElementById("itemsPlayer1");
+        let selectRace1 = document.getElementById("racePlayer1");
+        //playfield player 1
+        let box1 = document.getElementById("boxField1");
+        //buttons player 1
+        let playHit1 = document.getElementById("hit1");
+        let playHeal1 = document.getElementById("heal1");
+        let playYield1 = document.getElementById("yield1");
+        //classes knoppen van hit, hiel en yield
+        let box3 = document.querySelector(".box-3");
+        //classes van textefield, items en races
+        let chooseItems1 = document.querySelector(".chooseItems1");
+        let chooseRaces1 = document.querySelector(".chooseRaces1");
+
+    //player 2
+        let fname2 = document.getElementById("name2");
+        //dropdown player 2
+        let selectItem2 = document.getElementById("itemsPlayer2");
+        let selectRace2 = document.getElementById("racePlayer2");
+        //playfield player 2
+        let box2 = document.getElementById("boxField2");
+        //buttons player 2
+        let playHit2 = document.getElementById("hit2");
+        let playHeal2 = document.getElementById("heal2");
+        let playYield2 = document.getElementById("yield2"); 
+        //logfield - textveld - move's
+        let logfield = document.getElementById("log");
+        //classes knoppen van hit, hiel en yield
+        let box4 = document.querySelector(".box-4");
+        //classes van textefield, items en races
+        let chooseItems2 = document.querySelector(".chooseItems2");
+        let chooseRaces2 = document.querySelector(".chooseRaces2");
+
+        //aanmaak karakters
+        function Person(race,item){
+            this.race = race;
+            this.item = item;
+            this.currenthealth = 120;
+            this.maxHealth = 120;
+            
+            this.min = 3;
+            this.maxDamage = 20;
+            this.maxHealing = 30;
+
+            this.heal = function(){};
+
+            this.damage = function(){};
+
+            this.totalDamage = this.damage();
+
+            this.displayChar = function(){
+                return console.log(`I am a ${this.race}, I wield a ${this.item}, my total health point are ${this.maxHealth}`);
+            };
+        }
+
+        //aanmaken player 1 met race en item met weergave
+        let player1 = new Person(selectItem1.value, selectRace1.value);
+
+        let health1 = document.getElementById("health1");
+        health1.innerHTML = player1.currenthealth;
+
+        let itemChoice1 = document.getElementById("itemChoice1");
+        itemChoice1.innerHTML = player1.item;
+
+        let rasChoice1 = document.getElementById("rasChoice1");
+        rasChoice1.innerHTML = player1.race;
+
+                   
+        //aanmaken player 2 met race en item met weergave
+        let player2 = new Person(selectItem2.value, selectRace2.value);
+
+        let health2 = document.getElementById("health2");
+        health2.innerHTML = player2.currenthealth;
+
+        let itemChoice2 = document.getElementById("itemChoice2");
+        itemChoice2.innerHTML = player2.item;
+
+        let rasChoice2 = document.getElementById("rasChoice2");
+        rasChoice2.innerHTML = player2.race;
+
+    // zorgen dat mijn knoppen verschijnen als ik op play klik
+    box3.style.display = "none";
+    box4.style.display = 'none';
+    // zorgen dat mijn knoppen verdwijnen als ik op play klik
+    fname1.style.display = "";
+    chooseItems1.style.display = "";
+    chooseRaces1.style.display = "";
+    fname2.style.display = "";
+    chooseItems2.style.display = "";
+    chooseRaces2.style.display = "";
+    btnStart.addEventListener("click", createCharacter);
+        
+    function createCharacter(event){
+        box3.style.display = "";
+        box4.style.display = "";
+        fname1.style.display = "none";
+        chooseItems1.style.display = "none";
+        chooseRaces1.style.display = "none";
+        fname2.style.display = "none";
+        chooseItems2.style.display = "none";
+        chooseRaces2.style.display = "none";
+    }
+
+    let input = document.getElementById("name1");
+    let output = document.querySelector(".greetingsBoxHolder h3");
+
+        input.addEventListener("keyup", extraName);
+
+            function extraName (){
+                let x = input.value;  
+           
+                if (x == ""){
+                    output.innerHTML=("sorry nothing to show");
+                } else {
+                    output.innerHTML = x
+                }
+            }
+    
+   
+
+   
+
+   </script> 
+</body>
+</html>
