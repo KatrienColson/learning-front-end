@@ -33,17 +33,17 @@
                 <div class ="chooseRaces1">
                     <label>Choose Races</label>
                     <select id="racePlayer1"> 
-                        <option value="human">Humans</option>
-                        <option value="orc">Orcs</option>
-                        <option value="elves">Elves</option>
-                        <option value="vampire">Vampires</option>
+                        <option value="human">Human</option>
+                        <option value="orc">Orc</option>
+                        <option value="elf">Elf</option>
+                        <option value="vampire">Vampire</option>
                     </select>
                 </div>
                  <!--health score speler 1-->
-                <div id="health1">100</div> 
+                <div id="health1"><progress max="100" value="80" id ="progress1"></progress><br>100</div> 
                 <p>Player 1</p>
-                    <div class="greetingsBoxHolder1"></div> 
-                    <h3><!-- Your message comes here--></h3> 
+                    <div class="nameBoxHolder1"></div> 
+                    <h3 id = "speler1">Your name comes here</h3> 
             </div>
 
             <!--vierkant speelveld-->
@@ -52,8 +52,12 @@
                     <div class="box-1"id='boxField1'>
                         
                         <!--keuze van race speler 1-->
-                        <div id="rasChoice1"></div>
-                        <div id="itemChoice1"></div>
+                        <div id="rasChoice1"><img id="portret1" class='portret1'>
+                             <div id="itemChoice1"><img id="portret1A" class='portret1A'>
+                             </div>
+                        </div>
+                        
+
                     </div>
             </div> 
             <div class="box-bg-2">
@@ -90,15 +94,17 @@
                 <div class = "chooseRaces2">
                     <label>Choose Races</label>
                     <select id="racePlayer2">
-                        <option value="human">Humans</option>
-                        <option value="orc">Orcs</option>
-                        <option value="elf">Elves</option>
-                        <option value="vampire">Vampires</option>
+                        <option value="human">Human</option>
+                        <option value="orc">Orc</option>
+                        <option value="elf">Elf</option>
+                        <option value="vampire">Vampire</option>
                     </select>
                 </div>
                 <!--health score speler 2-->
-                <div id="health2">130</div> 
-                <p>Player 2</p>    
+                <div id="health2"><progress max="100" value="80" id ="progress2"></progress><br>130</div> 
+                <p>Player 2</p>  
+                    <div class="nameBoxHolder2"></div> 
+                    <h3 id = "speler2">Your name comes here</h3>   
             </div>
         
             <!--vierkant speelveld-->
@@ -107,8 +113,10 @@
                 <div class="box-2" id="boxField2">
                     
                     <!--keuze van race speler 2-->
-                    <div id="rasChoice2"></div>
-                    <div id="itemChoice2"></div>
+                    <div id="rasChoice2"><img id="portret2" class='portret2'>
+                         <div id="itemChoice2"><img id="portret2A" class='portret2A'>
+                        </div>
+                    </div>
                 </div> 
             </div> 
             <div class="box-bg-2">
@@ -124,135 +132,8 @@
     </div><!--einde container 1-->
 
 <!--BEGIN JAVASCRIPT-->
-   <script>
-        //startbutton
-        let btnStart = document.getElementById("start");
-        
-    //player 1
-        let fname1 = document.getElementById("name1");
-        //dropdown player 1
-        let selectItem1 = document.getElementById("itemsPlayer1");
-        let selectRace1 = document.getElementById("racePlayer1");
-        //playfield player 1
-        let box1 = document.getElementById("boxField1");
-        //buttons player 1
-        let playHit1 = document.getElementById("hit1");
-        let playHeal1 = document.getElementById("heal1");
-        let playYield1 = document.getElementById("yield1");
-        //classes knoppen van hit, hiel en yield
-        let box3 = document.querySelector(".box-3");
-        //classes van textefield, items en races
-        let chooseItems1 = document.querySelector(".chooseItems1");
-        let chooseRaces1 = document.querySelector(".chooseRaces1");
+  
+    <script src="resources/function.js"></script> 
 
-    //player 2
-        let fname2 = document.getElementById("name2");
-        //dropdown player 2
-        let selectItem2 = document.getElementById("itemsPlayer2");
-        let selectRace2 = document.getElementById("racePlayer2");
-        //playfield player 2
-        let box2 = document.getElementById("boxField2");
-        //buttons player 2
-        let playHit2 = document.getElementById("hit2");
-        let playHeal2 = document.getElementById("heal2");
-        let playYield2 = document.getElementById("yield2"); 
-        //logfield - textveld - move's
-        let logfield = document.getElementById("log");
-        //classes knoppen van hit, hiel en yield
-        let box4 = document.querySelector(".box-4");
-        //classes van textefield, items en races
-        let chooseItems2 = document.querySelector(".chooseItems2");
-        let chooseRaces2 = document.querySelector(".chooseRaces2");
-
-        //aanmaak karakters
-        function Person(race,item){
-            this.race = race;
-            this.item = item;
-            this.currenthealth = 120;
-            this.maxHealth = 120;
-            
-            this.min = 3;
-            this.maxDamage = 20;
-            this.maxHealing = 30;
-
-            this.heal = function(){};
-
-            this.damage = function(){};
-
-            this.totalDamage = this.damage();
-
-            this.displayChar = function(){
-                return console.log(`I am a ${this.race}, I wield a ${this.item}, my total health point are ${this.maxHealth}`);
-            };
-        }
-
-        //aanmaken player 1 met race en item met weergave
-        let player1 = new Person(selectItem1.value, selectRace1.value);
-
-        let health1 = document.getElementById("health1");
-        health1.innerHTML = player1.currenthealth;
-
-        let itemChoice1 = document.getElementById("itemChoice1");
-        itemChoice1.innerHTML = player1.item;
-
-        let rasChoice1 = document.getElementById("rasChoice1");
-        rasChoice1.innerHTML = player1.race;
-
-                   
-        //aanmaken player 2 met race en item met weergave
-        let player2 = new Person(selectItem2.value, selectRace2.value);
-
-        let health2 = document.getElementById("health2");
-        health2.innerHTML = player2.currenthealth;
-
-        let itemChoice2 = document.getElementById("itemChoice2");
-        itemChoice2.innerHTML = player2.item;
-
-        let rasChoice2 = document.getElementById("rasChoice2");
-        rasChoice2.innerHTML = player2.race;
-
-    // zorgen dat mijn knoppen verschijnen als ik op play klik
-    box3.style.display = "none";
-    box4.style.display = 'none';
-    // zorgen dat mijn knoppen verdwijnen als ik op play klik
-    fname1.style.display = "";
-    chooseItems1.style.display = "";
-    chooseRaces1.style.display = "";
-    fname2.style.display = "";
-    chooseItems2.style.display = "";
-    chooseRaces2.style.display = "";
-    btnStart.addEventListener("click", createCharacter);
-        
-    function createCharacter(event){
-        box3.style.display = "";
-        box4.style.display = "";
-        fname1.style.display = "none";
-        chooseItems1.style.display = "none";
-        chooseRaces1.style.display = "none";
-        fname2.style.display = "none";
-        chooseItems2.style.display = "none";
-        chooseRaces2.style.display = "none";
-    }
-
-    let input = document.getElementById("name1");
-    let output = document.querySelector(".greetingsBoxHolder h3");
-
-        input.addEventListener("keyup", extraName);
-
-            function extraName (){
-                let x = input.value;  
-           
-                if (x == ""){
-                    output.innerHTML=("sorry nothing to show");
-                } else {
-                    output.innerHTML = x
-                }
-            }
-    
-   
-
-   
-
-   </script> 
 </body>
 </html>
