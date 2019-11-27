@@ -20,6 +20,9 @@
      //classes van textefield, items en races
      let chooseItems1 = document.querySelector(".chooseItems1");
      let chooseRaces1 = document.querySelector(".chooseRaces1");
+     //progresbar health1
+     let progress1 = document.getElementById("progress1");
+
 
  //player 2
      let fname2 = document.getElementById("name2");
@@ -41,14 +44,17 @@
      //classes van textefield, items en races
      let chooseItems2 = document.querySelector(".chooseItems2");
      let chooseRaces2 = document.querySelector(".chooseRaces2");
+     //progresbar health2
+     let progress2 = document.getElementById("progress2");
+
 
      //aanmaak karakters
      function Person( item, race, name){
          this.item = item;
          this.race = race;
          this.name = name;
-         this.currenthealth = 120;
-         this.maxHealth = 120;
+         this.currenthealth = 100;
+         this.maxHealth = 100;
          
          this.min = 3;
          this.maxDamage = 20;
@@ -68,8 +74,10 @@
  // zorgen dat mijn knoppen verschijnen als ik op play klik
  box3.style.display = "none";
  box4.style.display = 'none';
+ progress1.style.display = "none";
+ progress2.style.display = "none";
+
  // zorgen dat mijn knoppen verdwijnen als ik op play klik
- 
  fname1.style.display = "";
  chooseItems1.style.display = "";
  chooseRaces1.style.display = "";
@@ -81,6 +89,8 @@
  function createCharacter(event){
      box3.style.display = "";
      box4.style.display = "";
+     progress1.style.display = "block";
+     progress2.style.display = "block";
      fname1.style.display = "none";
      chooseItems1.style.display = "none";
      chooseRaces1.style.display = "none";
@@ -179,6 +189,28 @@
           break;
       }
  }
+
+playYield1.addEventListener('click', didGamEnd); 
+    function didGamEnd(){
+        alert("GAME OVER !!!");
+        // zorgen dat mijn knoppen verdwijnen als het spel gedaan is
+        box3.style.display = "";
+        box4.style.display = '';
+        progress1.style.display = "";
+        progress2.style.display = "";
+        // zorgen dat mijn knoppen verschijnen als het spel gedaan is
+        fname1.style.display = "none";
+        chooseItems1.style.display = "none";
+        chooseRaces1.style.display = "none";
+        fname2.style.display = "none";
+        chooseItems2.style.display = "none";
+        chooseRaces2.style.display = "none";  
+}
+playYield2.addEventListener('click', didGamEnd); 
+    function didGamEnd(){
+        alert("GAME OVER !!!");
+    }
+
 
 
  
