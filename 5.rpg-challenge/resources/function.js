@@ -53,8 +53,8 @@
          this.item = item;
          this.race = race;
          this.name = name;
-         this.currenthealth = 100;
-         this.maxHealth = 100;
+         this.currenthealth = 120;
+         this.maxHealth = 120;
          
          this.min = 3;
          this.maxDamage = 20;
@@ -189,7 +189,6 @@
           break;
       }
  }
-
 playYield1.addEventListener('click', didGamEnd); 
     function didGamEnd(){
         alert("GAME OVER !!!");

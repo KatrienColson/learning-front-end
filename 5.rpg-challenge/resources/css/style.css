@@ -90,7 +90,7 @@ p{
 }
 .namePlayer1, .namePlayer2{
     color: #FFC300;
-    font-size: 18px;
+    font-size: 20px;
 }
 ::placeholder {
     color: #ff9c33;
@@ -126,6 +126,7 @@ input[type=text]{
 }
 #health1, #health2{
     color: white;
+    margin-top: 20px;
 }
 /*vierkant speelveld*/
 .box-bg-1 {
@@ -139,6 +140,9 @@ input[type=text]{
     width: 250px;
     height: 300px;
     background-color: white;
+    background-image: url(../img/dobbelsteen-zwart.jpg);
+    background-position: bottom;
+    background-size: cover;
 } 
 /*foto race in speelveld*/
 .portret1, .portret2{
@@ -159,6 +163,9 @@ input[type=text]{
     width: 250px;
     height: 300px;
     background-color: #f65e1c;
+    background-image: url(../img/dobbelsteen.jpg);
+    background-position: bottom;
+    background-size: cover;
 } 
 /*knoppen*/
 .box-bg-2{
@@ -191,12 +198,24 @@ input[type=text]{
     background-color:  #f65e1c;
     color: white;
 }
-h3{
+h1{
     color: white;
     text-align: center;
 }
-#progress1, #progress2[value] {
+/*health bar styling*/
+progress {
+    display: flex;
     width: 170px;
     height: 20px;
-  }
-
+    margin: 2em auto;
+    padding: 4px;
+    border: 0 none;
+    background: #f65e1c;
+    border-radius: 4px;
+}
+::-webkit-progress-bar {
+    background-color: orange;
+}
+::-webkit-progress-value {
+    background-color: #f65e1c;
+}
