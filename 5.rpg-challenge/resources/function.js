@@ -1,7 +1,49 @@
  //startbutton
+ let races = {
+    "human" : "human.jpg",
+    "orc" : "orc.jpg",
+    "elf" : "elf.jpg",
+    "vampire" : "vampire.jpg"
+ }
+ let healthmax=120;
  let btnStart = document.getElementById("start");
+function player(number, nameid,itemid,raceid,progress,box,chooseItems,chooseRaces,nameBoxHolder,portret)
+{
+    this.number=number;
+    this.name=document.getElementById(nameid);
+    this.item=document.getElementById(itemid);
+    this.raceid=document.getElementById(raceid);
+    this.progress=document.getElementById(progress);
+    this.progress.max=120;
+    this.progress.value=120;
+    this.box=document.querySelector(box);
+    
+    this.chooseItems=document.querySelector(chooseItems);
+    this.chooseRaces=document.querySelector(chooseRaces);
+    this.nameBoxHolder=document.getElementById(nameBoxHolder);
+    this.portret=document.getElementById(portret);
+    this.health=healthmax;
+    this.updateCharacter = function()
+    {
+        this.box.style.display= "none";
+        this.progress.style.display="none";
+        //this.fname.style.display = "none";
+        this.chooseItems.style.display = "none";
+        this.chooseRaces.style.display = "none";
+        this.nameBoxHolder.innerHTML=this.name.value;
+        this.portret.src = "resources/img/"+ races[this.raceid.value];
+    }
+    this.isattacked = function(size)
+    {
+        this.health-=size;
+        this.progress.value=this.health;
         
- //player 1
+    }
+}
+
+let players=[new player(1,"name1","itemsPlayer1","racePlayer1","progress1",".box-3",".chooseItems1",".chooseRaces1","speler1","portret1"),
+             new player(2,"name2","itemsPlayer2","racePlayer2","progress2",".box-4",".chooseItems2",".chooseRaces2","speler2","portret2")];
+//player 1
      let fname1 = document.getElementById("name1");
      //dropdown player 1
      let selectItem1 = document.getElementById("itemsPlayer1");
@@ -22,7 +64,7 @@
      let chooseRaces1 = document.querySelector(".chooseRaces1");
      //progresbar health1
      let progress1 = document.getElementById("progress1");
-
+     var player1;   
 
  //player 2
      let fname2 = document.getElementById("name2");
@@ -46,7 +88,8 @@
      let chooseRaces2 = document.querySelector(".chooseRaces2");
      //progresbar health2
      let progress2 = document.getElementById("progress2");
-
+    
+     let player2;
 
      //aanmaak karakters
      function Person( item, race, name){
@@ -86,7 +129,13 @@
  chooseRaces2.style.display = "";
  btnStart.addEventListener("click", createCharacter);
      
- function createCharacter(event){
+ function createCharacterCarlos(event)
+    {
+        players.forEach(p =>p.updateCharacter());
+        //players[0].updateCharacter();
+    }
+function createCharacter(event){
+     {
      box3.style.display = "";
      box4.style.display = "";
      progress1.style.display = "block";
@@ -100,7 +149,7 @@
 
      //aanmaken player 1 met race en item met weergave
      //naam ingeven en verschijnen onder player 1
-     let player1 = new Person(selectItem1.value, selectRace1.value, fname1.value);
+      player1 = new Person(selectItem1.value, selectRace1.value, fname1.value);
      let nameBoxHolder1 = document.getElementById("speler1");
      nameBoxHolder1.innerHTML = player1.name;
     
@@ -115,7 +164,7 @@
 
      //aanmaken player 2 met race en item met weergave
      //naam ingeven en verschijnen onder player 2
-     let player2 = new Person(selectItem2.value, selectRace2.value,fname2.value);
+     player2 = new Person(selectItem2.value, selectRace2.value,fname2.value);
      let nameBoxHolder2 = document.getElementById("speler2");
      nameBoxHolder2.innerHTML = player2.name;
     
@@ -127,7 +176,8 @@
 
      // let rasChoice2 = document.getElementById("rasChoice2");
      // rasChoice2.innerHTML = player2.race;
-
+     
+    }
      //foto race1 in kader
       switch(selectRace1.value) {
           case "human":
@@ -189,25 +239,27 @@
           break;
       }
  }
-playYield1.addEventListener('click', didGamEnd); 
-    function didGamEnd(){
+playYield1.addEventListener('click', didGamEnd1); 
+    function didGamEnd1(){
         alert("GAME OVER !!!");
         // zorgen dat mijn knoppen verdwijnen als het spel gedaan is
-        box3.style.display = "";
-        box4.style.display = '';
-        progress1.style.display = "";
-        progress2.style.display = "";
-        // zorgen dat mijn knoppen verschijnen als het spel gedaan is
-        fname1.style.display = "none";
-        chooseItems1.style.display = "none";
-        chooseRaces1.style.display = "none";
-        fname2.style.display = "none";
-        chooseItems2.style.display = "none";
-        chooseRaces2.style.display = "none";  
+        location.reload(true);
+       
 }
 playYield2.addEventListener('click', didGamEnd); 
     function didGamEnd(){
         alert("GAME OVER !!!");
+        location.reload(true);
+    }
+playHit1.addEventListener("click",attack1());
+    function attack1()
+    {
+        players[1].isattacked(10);
+    }   
+playHit2.addEventListener("click",attack2());
+    function attack2()
+    {
+        players[0].isattacked(10);
     }
 
 
