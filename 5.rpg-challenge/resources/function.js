@@ -37,13 +37,25 @@ function player(number, nameid,itemid,raceid,progress,box,chooseItems,chooseRace
     {
         this.health-=size;
         this.progress.value=this.health;
+        if(this.health <= 0){
+            this.health = 0
+            gameOver(this.name.value + " lost");
+        }
+        logadd(this.name.value + " lost " + size + " health points and now has " + this.health);
         
+    }
+    this.heals = function(size){
+        this.health += size;
+        this.health = Math.min(this.health, healthmax);
+        this.progress.value = this.health;
+        logadd(this.name.value + " added " + size + " health points and now has " + this.health);
     }
 }
 
 let players=[new player(1,"name1","itemsPlayer1","racePlayer1","progress1",".box-3",".chooseItems1",".chooseRaces1","speler1","portret1"),
              new player(2,"name2","itemsPlayer2","racePlayer2","progress2",".box-4",".chooseItems2",".chooseRaces2","speler2","portret2")];
-//player 1
+let turn = players[0];
+             //player 1
      let fname1 = document.getElementById("name1");
      //dropdown player 1
      let selectItem1 = document.getElementById("itemsPlayer1");
@@ -134,7 +146,7 @@ let players=[new player(1,"name1","itemsPlayer1","racePlayer1","progress1",".box
         players.forEach(p =>p.updateCharacter());
         //players[0].updateCharacter();
     }
-function createCharacter(event){
+ function createCharacter(event){
      {
      box3.style.display = "";
      box4.style.display = "";
@@ -241,28 +253,60 @@ function createCharacter(event){
  }
 playYield1.addEventListener('click', didGamEnd1); 
     function didGamEnd1(){
-        alert("GAME OVER !!!");
-        // zorgen dat mijn knoppen verdwijnen als het spel gedaan is
-        location.reload(true);
-       
-}
+        if (turn == players[0]){
+            gameOver(players[0].name.value + " yielded");
+            changeTurn();
+        }
+    }
 playYield2.addEventListener('click', didGamEnd); 
     function didGamEnd(){
-        alert("GAME OVER !!!");
-        location.reload(true);
+        if (turn == players[1]){
+            gameOver(players[1].name.value + " yielded");
+            changeTurn();
+        }
     }
-playHit1.addEventListener("click",attack1());
+playHit1.addEventListener("click",attack1);
     function attack1()
     {
-        players[1].isattacked(10);
+        if (turn == players[0]){
+            players[1].isattacked(10);
+            changeTurn();
+        }
     }   
-playHit2.addEventListener("click",attack2());
+playHit2.addEventListener("click",attack2);
     function attack2()
     {
-        players[0].isattacked(10);
+        if (turn == players[1]){
+            players[0].isattacked(10);
+            changeTurn();
+        }
     }
-
-
+playHeal1.addEventListener("click", heal1);
+    function heal1(){
+        if (turn == players[0]){
+            players[0].heals(5);
+            changeTurn();
+        }
+    }
+playHeal2.addEventListener("click",heal2);
+    function heal2(){
+        if (turn == players[1]){
+            players[1].heals(5);
+            changeTurn();
+        }
+    }
+function logadd(message){
+    logfield.innerHTML += message + "<br>";
+}
+function gameOver(loserMessage){
+    alert("GAME OVER !!! " + loserMessage);
+    logadd("GAME OVER !!! " + loserMessage);
+    location.reload(true);
+}
+function changeTurn(){
+    if (turn == players[0])turn = players[1];
+    else turn = players[0];
+}
 
  
 
