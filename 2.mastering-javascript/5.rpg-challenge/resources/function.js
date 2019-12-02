@@ -108,8 +108,8 @@ let turn = players[0];
          this.item = item;
          this.race = race;
          this.name = name;
-         this.currenthealth = 120;
-         this.maxHealth = 120;
+         this.currenthealth = 100;
+         this.maxHealth = 100;
          
          this.min = 3;
          this.maxDamage = 20;

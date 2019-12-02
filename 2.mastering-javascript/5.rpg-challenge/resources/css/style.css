@@ -19,7 +19,7 @@ body{
     flex-wrap: wrap;
     width: 100%;
     height: auto;
-    justify-content: center;
+    justify-content: space-evenly;
     padding-bottom: 10px;
     font-family: 'Walter Turncoat', cursive;
 }
@@ -60,7 +60,7 @@ body{
     flex-direction: column;
     border: 1px solid white;
     background-color: black;
-    width: 30%;
+    width: 25%;
 }
 /*titel playveld*/
 p{
@@ -83,11 +83,26 @@ p{
     border: 3px groove orange;
     padding: 10px;
     margin: 10px;
-    width: 90px;
-    height: 100px;
+    width: 400px;
+    height: 300px;
     text-align: center;
     color: white;
+    background-color: black;
+    overflow: auto;
 }
+.veld-3::-webkit-scrollbar {
+    width: 1em;
+} 
+.veld-3::-webkit-scrollbar-thumb {
+    background-color: white;
+    outline: 1px solid slategrey;
+}
+
+
+
+
+
+
 .namePlayer1, .namePlayer2{
     color: #FFC300;
     font-size: 20px;
