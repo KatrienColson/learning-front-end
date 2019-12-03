@@ -1,54 +1,12 @@
 //startbutton
-let races = {
-    "human" : "human.jpg",
-    "orc" : "orc.jpg",
-    "elf" : "elf.jpg",
-    "vampire" : "vampire.jpg"
-}
-let healthmax=120;
+// let races = {
+//     "human" : "human.jpg",
+//     "orc" : "orc.jpg",
+//     "elf" : "elf.jpg",
+//     "vampire" : "vampire.jpg"
+// }
+let healthmax = 120;
 let btnStart = document.getElementById("start");
-
-    function player(number, nameid,itemid,raceid,progress,box,chooseItems,chooseRaces,nameBoxHolder,portret){
-        this.number=number;
-        this.name=document.getElementById(nameid);
-        this.item=document.getElementById(itemid);
-        this.raceid=document.getElementById(raceid);
-        this.progress=document.getElementById(progress);
-        this.progress.max=120;
-        this.progress.value=120;
-        this.box=document.querySelector(box);
-        
-        this.chooseItems=document.querySelector(chooseItems);
-        this.chooseRaces=document.querySelector(chooseRaces);
-        this.nameBoxHolder=document.getElementById(nameBoxHolder);
-        this.portret=document.getElementById(portret);
-        this.health=healthmax;
-
-        this.updateCharacter = function(){
-            this.box.style.display= "none";
-            this.progress.style.display="none";
-            //this.fname.style.display = "none";
-            this.chooseItems.style.display = "none";
-            this.chooseRaces.style.display = "none";
-            this.nameBoxHolder.innerHTML=this.name.value;
-            this.portret.src = "resources/img/"+ races[this.raceid.value];
-        }
-        this.isattacked = function(size){
-            this.health-=size;
-            this.progress.value=this.health;
-            if(this.health <= 0){
-                this.health = 0
-                gameOver(this.name.value + " lost");
-            }
-            logadd(this.name.value + " lost " + size + " health points and now has " + this.health);   
-        }
-        this.heals = function(size){
-            this.health += size;
-            this.health = Math.min(this.health, healthmax);
-            this.progress.value = this.health;
-            logadd(this.name.value + " added " + size + " health points and now has " + this.health);
-        }
-    }
 
 let players=[new player(1,"name1","itemsPlayer1","racePlayer1","progress1",".box-3",".chooseItems1",".chooseRaces1","speler1","portret1"),
              new player(2,"name2","itemsPlayer2","racePlayer2","progress2",".box-4",".chooseItems2",".chooseRaces2","speler2","portret2")];
@@ -139,6 +97,47 @@ let logfield = document.getElementById("log");
 //  chooseItems2.style.display = "";
 //  chooseRaces2.style.display = "";
 
+function player(number, nameid,itemid,raceid,progress,box,chooseItems,chooseRaces,nameBoxHolder,portret){
+    this.number = number;
+    this.name = document.getElementById(nameid);
+    this.item = document.getElementById(itemid);
+    this.raceid = document.getElementById(raceid);
+    this.progress = document.getElementById(progress);
+    this.progress.max = 120;
+    this.progress.value = 120;
+    this.box = document.querySelector(box);
+    
+    this.chooseItems = document.querySelector(chooseItems);
+    this.chooseRaces = document.querySelector(chooseRaces);
+    this.nameBoxHolder = document.getElementById(nameBoxHolder);
+    this.portret = document.getElementById(portret);
+    this.health = healthmax;
+
+    this.updateCharacter = function(){
+        this.box.style.display = "none";
+        this.progress.style.display ="none";
+        //this.fname.style.display = "none";
+        this.chooseItems.style.display = "none";
+        this.chooseRaces.style.display = "none";
+        this.nameBoxHolder.innerHTML = this.name.value;
+        this.portret.src = "resources/img/"+ races[this.raceid.value];
+    }
+    this.isattacked = function(size){
+        this.health -= size;
+        this.progress.value = this.health;
+        if(this.health <= 0){
+            this.health = 0
+            gameOver(this.name.value + " lost");
+        }
+        logadd(this.name.value + " lost " + size + " health points and now has " + this.health);   
+    }
+    this.heals = function(size){
+        this.health += size;
+        this.health = Math.min(this.health, healthmax);
+        this.progress.value = this.health;
+        logadd(this.name.value + " added " + size + " health points and now has " + this.health);
+    }
+}
  btnStart.addEventListener("click", createCharacter);
      
  function createCharacterCarlos(event)
