@@ -97,7 +97,7 @@ let logfield = document.getElementById("log");
 //  chooseItems2.style.display = "";
 //  chooseRaces2.style.display = "";
 
-function player(number, nameid,itemid,raceid,progress,box,chooseItems,chooseRaces,nameBoxHolder,portret){
+function player(number, nameid, itemid, raceid, progress, box, chooseItems, chooseRaces, nameBoxHolder, portret){
     this.number = number;
     this.name = document.getElementById(nameid);
     this.item = document.getElementById(itemid);
