@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"> </script>
+    <title>Document</title>
+<style>
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 300%;
+
+}
+
+</style>
+</head>
+<body>
+
+<!--oefening 1-->  
+<div class = "oefeningen"><h1>Oefening 1</h1>
+    <div id = "app1">
+        <input type = 'text'v-on:input="changeTitle">
+        
+        <p>{{title}}</p>
+    </div>
+</div>  
+<br> 
+
+ <!--oefening 2-->  
+<div class = "oefeningen"><h1>Oefening 2</h1>
+    <div id = "app2">                    
+        <p>{{sayHello2()}}</p>
+    </div>
+</div>  
+<br> 
+ 
+<!--oefening 3-->  
+<div class = "oefeningen"><h1>Oefening 3</h1>
+        <div id = "app3">                    
+            <p>{{sayHello3()}}</p>
+        </div>
+</div>  
+<br> 
+
+<!--oefening 4: BIND-->  
+<div class = "oefeningen"><h1>Oefening 4</h1>
+        <div id = "app4">                    
+            <p>{{sayHello4()}} - <a v-bind:href="link">Google</a></p>
+        </div>
+</div>  
+<br> 
+
+<!--oefening 5:geen comande 1X-->  
+<div class = "oefeningen"><h1>Oefening 5</h1>
+        <div id = "app5">
+            <h2 v-once>{{title}}</h2>                    
+            <p>{{sayHello5()}} - <a v-bind:href="link">Google</a></p>
+        </div>
+</div>  
+<br> 
+
+<!--oefening 6: hier geeft het tekst ipv de link-->  
+<div class = "oefeningen"><h1>Oefening 6</h1>
+        <div id = "app6">
+            <h2 v-once>{{title}}</h2>                    
+            <p>{{sayHello6()}} - <a v-bind:href="link">Google</a></p>
+        <hr>
+        <p>{{finishedLink}}</p>
+        </div>
+</div>  
+<br>
+
+<!--oefening 6A: hier geeft het de link-->  
+<div class = "oefeningen"><h1>Oefening 6A</h1>
+        <div id = "app6A">
+            <h2 v-once>{{title}}</hé>                    
+            <p>{{sayHello6A()}} - <a v-bind:href="link">Google</a></p>
+        <hr>
+        <p v-html='finishedLink'></p>
+        </div>
+</div>  
+<br>
+
+<!--oefening 7: optellen met een knop-->  
+<div class = "oefeningen"><h1>Oefening 7</h1>
+        <div id = "app7">
+            <button v-on:click='increase'>Click me</button>
+            <p>{{counter}}</p>
+        </div>
+</div>  
+<br>
+<!--oefening 8-->  
+<div class = "oefeningen"><h1>Oefening 8</h1>
+    <div id = "app8">
+        <button v-on:click='increase'>Click me</button>
+        <p>{{counter}}</p>
+        <p v-on:mousemove= "updateCoordinates">
+            Coordinates:{{x}} / {{y}}
+        </p>
+    </div>
+</div>  
+<br>
+<!--oefening 9:optellen met 2-->  
+<div class = "oefeningen"><h1>Oefening 9</h1>
+    <div id = "app9">
+        <button v-on:click='increase(2)'>Click me</button>
+        <p>{{counter}}</p>
+        <p v-on:mousemove= "updateCoordinates">
+            Coordinates:{{x}} / {{y}}
+        </p>
+    </div>
+</div>  
+<br>
+<!--oefening 10-->  
+<div class = "oefeningen"><h1>Oefening 10</h1>
+    <div id = "app10">
+        <button v-on:click='increase(2)'>Click me</button>
+        <p>{{counter}}</p>
+        <p v-on:mousemove= "updateCoordinates">
+            Coordinates:{{x}} / {{y}}
+            <span v-on:mousemover = "dummy">DEAD SPOT</span>
+        </p>
+    </div>
+</div>  
+<br>
+<!--oefening 10A-->  
+<div class = "oefeningen"><h1>Oefening 10A</h1>
+    <div id = "app10A">
+        <button v-on:click='increase(2)'>Click me</button>
+        <p>{{counter}}</p>
+        <p v-on:mousemove= "updateCoordinates">
+            Coordinates:{{x}} / {{y}}
+            <span v-on:mousemover.stop = "">DEAD SPOT</span>
+        </p>
+    </div>
+</div>  
+<br>
+<!--oefening 11: event modifire-->  
+<div class = "oefeningen"><h1>Oefening 11</h1>
+    <div id = "app11">
+        <button v-on:click='increase(2)'>Click me</button>
+        <p>{{counter}}</p>
+        <p v-on:mousemove= "updateCoordinates">
+            Coordinates:{{x}} / {{y}}
+            <span v-on:mousemover.stop = "">DEAD SPOT</span>
+        </p>
+        <input type ="text" v-on:keyup.enter.space="alertMe">
+    </div>
+</div>  
+<br>
+<!--oefening 12-->  
+<div class = "oefeningen"><h1>Oefening 12</h1>
+    <div id = "app12">
+        <button v-on:click='increase(2)'>Click me</button>
+        <button v-on:click='counter++'>Click me</button>
+        <p>{{counter}}</p>
+        <p v-on:mousemove= "updateCoordinates">
+            Coordinates:{{x}} / {{y}}
+            <span v-on:mousemover.stop = "">DEAD SPOT</span>
+        </p>
+        <input type ="text" v-on:keyup.enter.space="alertMe">
+    </div>
+</div>  
+<br>
+<!--oefening 13:knop 1==> X4 knop 2==> X2-->  
+<div class = "oefeningen"><h1>Oefening 13</h1>
+    <div id = "app13">
+        <button v-on:click='increase(2)'>Click me</button>
+        <button v-on:click='counter++'>Click me</button>
+        <p>{{counter * 2}}</p>
+        <p v-on:mousemove= "updateCoordinates">
+            Coordinates:{{x}} / {{y}}
+            <span v-on:mousemover.stop = "">DEAD SPOT</span>
+        </p>
+        <input type ="text" v-on:keyup.enter.space="alertMe">
+    </div>
+</div>  
+<br>
+<!--oefening 14:-->  
+<div class = "oefeningen"><h1>Oefening 14</h1>
+    <div id = "app14">
+        <button v-on:click='increase(2)'>Click me</button>
+        <button v-on:click='counter++'>Click me</button>
+        <p>{{counter * 2 > 10? 'Greate than 10' : 'SMaller than 10'}}
+
+        </p>
+        <p v-on:mousemove= "updateCoordinates">
+            Coordinates:{{x}} / {{y}}
+            <span v-on:mousemover.stop = "">DEAD SPOT</span>
+        </p>
+        <input type ="text" v-on:keyup.enter.space="alertMe">
+    </div>
+</div>  
+<br>
+
+<!--oefening 15:Using Two-Way-Binding-->  
+<div class = "oefeningen"><h1>Oefening 15</h1>
+    <div id = "app15">
+        <input type = 'text' v-model ="name"> 
+            <p>{{name}}</p>
+    </div>
+</div>  
+<br>
+<!--oefening 16: Reacting to Changes withComputed Properties-->  
+<div class = "oefeningen"><h1>Oefening 16</h1>
+    <div id = "app16">
+        <button v-on:click='increase'>Increase</button>
+        <button v-on:click='decrease'>Decrease</button>
+        <p>Counter: {{counter}}</p>
+        <p>Result: {{result}}</p>
+    </div>
+</div>  
+<br>
+<!--oefening 16A: Reacting to Changes withComputed Properties-->  
+<!--kortere versie dan 16-->
+<div class = "oefeningen"><h1>Oefening 16A</h1>
+    <div id = "app16A">
+        <button v-on:click='counter++'>Increase</button>
+        <button v-on:click='counter--'>Decrease</button>
+        <button v-on:click='secondCounter++'>Increase Second</button>
+        <p>Counter: {{counter}}</p>
+        <p>Result: {{result()}} | {{output}} </p>
+    </div>
+</div>  
+<br>
+<!--kortere versie dan 17-->
+<div class = "oefeningen"><h1>Oefening 17</h1>
+    <div id = "app17">
+        <button v-on:click='counter++'>Increase</button>
+        <button v-on:click='counter--'>Decrease</button>
+        <button v-on:click='secondCounter++'>Increase Second</button>
+        <p>Counter: {{counter}}</p>
+        <p>Result: {{result()}} | {{output}} </p>
+    </div>
+</div>  
+<br>
+<p><img src="" alt=""></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><!--einde class oefeningen-->
+
+ 
+ <script src="test.js"></script>    
+</body>
+</html>
